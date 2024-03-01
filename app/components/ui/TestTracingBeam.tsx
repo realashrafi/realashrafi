@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { twMerge } from "tailwind-merge";
-import { TracingBeam } from "../ui/tracing-beam";
+import {twMerge} from "tailwind-merge";
+import {TracingBeam} from "../ui/tracing-beam";
+import GlitchButton from "@/app/components/button/GlitchButton";
 
 export function TracingBeamDemo() {
     return (
@@ -10,10 +11,10 @@ export function TracingBeamDemo() {
             <div className=" max-w-2xl mx-auto antialiased pt-4 relative">
                 {dummyContent.map((item, index) => (
                     <div key={`content-${index}`} className="mb-10">
-                        <h2 className="bg-black text-white rounded-full text-sm w-fit px-4 py-1 mb-4">
-                            {item.badge}
-                        </h2>
-
+                        {/*<h2 className="bg-black text-white rounded-full text-sm w-fit px-4 py-1 mb-4">*/}
+                        {/*    {item.badge}*/}
+                        {/*</h2>*/}
+                        <GlitchButton id={index} data={item.badge}/>
                         <p className={twMerge("text-xl text-slate-200 mb-4")}>
                             {item.title}
                         </p>
