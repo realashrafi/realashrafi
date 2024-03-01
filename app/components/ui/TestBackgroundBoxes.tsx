@@ -3,6 +3,7 @@ import React from "react";
 import {Boxes} from "../ui/background-boxes";
 import {cn} from "../../utils/cn";
 import {FollowerPointerCard} from '@/app/components/ui/following-pointer'
+import {TypeAnimation} from "react-type-animation";
 
 export function BackgroundBoxesDemo() {
     return (
@@ -17,11 +18,32 @@ export function BackgroundBoxesDemo() {
 
                 <Boxes/>
                 <h1 className={cn("md:text-4xl text-xl text-white relative z-20")}>
-                    Tailwind is Awesome
+                    <TypeAnimation
+                        sequence={[
+                            'Tailwind CSS', // Types 'One'
+                            350, // Waits 1s
+                            '& Framer Motion', // Deletes 'One' and types 'Two'
+                            700, // Waits 2s
+                            '& SASS & LESS',
+                            1050,
+                            '& Javascript',
+                            1400,
+                            '& React.Js & Next.Js',
+                            1750,
+                            '& RestAPI',
+                            2300,
+                            '& Git',
+                            2550
+                        ]}
+                        wrapper="span"
+                        cursor={true}
+                        repeat={Infinity}
+                        style={{ fontSize: '1em', display: 'inline-block' }}
+                    />
                 </h1>
-                <p className="text-center mt-2 text-neutral-300 relative z-20">
-                    Framer motion is the best animation library ngl
-                </p>
+                {/*<p className="text-center mt-2 text-neutral-300 relative z-20">*/}
+                {/*    Framer motion is the best animation library ngl*/}
+                {/*</p>*/}
             {/*</FollowerPointerCard>*/}
         </div>
     );

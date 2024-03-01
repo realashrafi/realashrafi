@@ -4,6 +4,7 @@ import Image from "next/image";
 import {twMerge} from "tailwind-merge";
 import {TracingBeam} from "../ui/tracing-beam";
 import GlitchButton from "@/app/components/button/GlitchButton";
+import {CardBody, CardContainer, CardItem} from "@/app/components/ui/3d-card";
 
 export function TracingBeamDemo() {
     return (
@@ -11,9 +12,6 @@ export function TracingBeamDemo() {
             <div className=" max-w-2xl mx-auto antialiased pt-4 relative">
                 {dummyContent.map((item, index) => (
                     <div key={`content-${index}`} className="mb-10">
-                        {/*<h2 className="bg-black text-white rounded-full text-sm w-fit px-4 py-1 mb-4">*/}
-                        {/*    {item.badge}*/}
-                        {/*</h2>*/}
                         <GlitchButton id={index} data={item.badge}/>
                         <p className={twMerge("text-xl text-slate-200 mb-4")}>
                             {item.title}
@@ -40,77 +38,42 @@ export function TracingBeamDemo() {
 
 const dummyContent = [
     {
-        title: "Lorem Ipsum Dolor Sit Amet",
+        title: "As an accomplished front-end developer,",
         description: (
             <>
                 <p>
-                    Sit duis est minim proident non nisi velit non consectetur. Esse
-                    adipisicing laboris consectetur enim ipsum reprehenderit eu deserunt
-                    Lorem ut aliqua anim do. Duis cupidatat qui irure cupidatat incididunt
-                    incididunt enim magna id est qui sunt fugiat. Laboris do duis pariatur
-                    fugiat Lorem aute sit ullamco. Qui deserunt non reprehenderit dolore
-                    nisi velit exercitation Lorem qui do enim culpa. Aliqua eiusmod in
-                    occaecat reprehenderit laborum nostrud fugiat voluptate do Lorem culpa
-                    officia sint labore. Tempor consectetur excepteur ut fugiat veniam
-                    commodo et labore dolore commodo pariatur.
-                </p>
-                <p>
-                    Dolor minim irure ut Lorem proident. Ipsum do pariatur est ad ad
-                    veniam in commodo id reprehenderit adipisicing. Proident duis
-                    exercitation ad quis ex cupidatat cupidatat occaecat adipisicing.
-                </p>
-                <p>
-                    Tempor quis dolor veniam quis dolor. Sit reprehenderit eiusmod
-                    reprehenderit deserunt amet laborum consequat adipisicing officia qui
-                    irure id sint adipisicing. Adipisicing fugiat aliqua nulla nostrud.
-                    Amet culpa officia aliquip deserunt veniam deserunt officia
-                    adipisicing aliquip proident officia sunt.
+                    my proficiency extends to React.js and Next.js frameworks, where my focus lies in crafting flawless
+                    user experiences and implementing innovative solutions. With a wealth of experience, I am adept at
+                    translating design concepts into interactive web applications, ensuring both functionality and
+                    aesthetic appeal. My approach emphasizes clean, maintainable code and efficient development
+                    practices to deliver high-quality solutions that exceed client expectations. I thrive in
+                    collaborative environments, where I contribute my expertise to cross-functional teams, fostering
+                    creativity and problem-solving.
                 </p>
             </>
         ),
-        badge: "React",
+        badge: "Summary",
         image:
             "https://img2.wallspic.com/previews/4/3/9/5/7/175934/175934-abstract_art-illustration-colored-art-colorfulness-x750.jpg",
     },
     {
-        title: "Lorem Ipsum Dolor Sit Amet",
+        title: "My objective is",
         description: (
             <>
                 <p>
-                    Ex irure dolore veniam ex velit non aute nisi labore ipsum occaecat
-                    deserunt cupidatat aute. Enim cillum dolor et nulla sunt exercitation
-                    non voluptate qui aliquip esse tempor. Ullamco ut sunt consectetur
-                    sint qui qui do do qui do. Labore laborum culpa magna reprehenderit ea
-                    velit id esse adipisicing deserunt amet dolore. Ipsum occaecat veniam
-                    commodo proident aliqua id ad deserunt dolor aliquip duis veniam sunt.
-                </p>
-                <p>
-                    In dolore veniam excepteur eu est et sunt velit. Ipsum sint esse
-                    veniam fugiat esse qui sint ad sunt reprehenderit do qui proident
-                    reprehenderit. Laborum exercitation aliqua reprehenderit ea sint
-                    cillum ut mollit.
+                    to leverage my expertise in front-end development to contribute meaningfully to cutting-edge
+                    projects while continuously expanding my skills and knowledge in the field. I am passionate about
+                    staying at the forefront of technological advancements and pushing the boundaries of what is
+                    possible in web development. By immersing myself in challenging projects, I aim to refine my
+                    abilities and explore new avenues for innovation. I am committed to lifelong learning, actively
+                    seeking out opportunities to deepen my understanding of emerging technologies and best practices.
+                    Furthermore, I strive to cultivate a growth mindset, embracing challenges as opportunities for
+                    growth and remaining adaptable in the face of change. Through dedication and perseverance, I aspire
+                    to make meaningful contributions to the ever-evolving landscape of front-end development.
                 </p>
             </>
         ),
-        badge: "Changelog",
-        image:
-            "https://img2.wallspic.com/previews/4/3/9/5/7/175934/175934-abstract_art-illustration-colored-art-colorfulness-x750.jpg",
-    },
-    {
-        title: "Lorem Ipsum Dolor Sit Amet",
-        description: (
-            <>
-                <p>
-                    Ex irure dolore veniam ex velit non aute nisi labore ipsum occaecat
-                    deserunt cupidatat aute. Enim cillum dolor et nulla sunt exercitation
-                    non voluptate qui aliquip esse tempor. Ullamco ut sunt consectetur
-                    sint qui qui do do qui do. Labore laborum culpa magna reprehenderit ea
-                    velit id esse adipisicing deserunt amet dolore. Ipsum occaecat veniam
-                    commodo proident aliqua id ad deserunt dolor aliquip duis veniam sunt.
-                </p>
-            </>
-        ),
-        badge: "Launch Week",
+        badge: "Objective",
         image:
             "https://img2.wallspic.com/previews/4/3/9/5/7/175934/175934-abstract_art-illustration-colored-art-colorfulness-x750.jpg",
     },

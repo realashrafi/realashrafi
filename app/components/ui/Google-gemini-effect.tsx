@@ -2,7 +2,7 @@
 import {cn} from "../../utils/cn";
 import {motion, MotionValue} from "framer-motion";
 import React from "react";
-
+import { TypeAnimation } from 'react-type-animation';
 const transition = {
     duration: 0,
     ease: "linear",
@@ -22,20 +22,50 @@ export const GoogleGeminiEffect = ({
     return (
         <div className={cn("sticky top-52 lg:top-72", className)}>
             <p className="text-lg md:text-7xl font-normal pb-4 text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-300">
-                {title || `Build with Aceternity UI`}
+                <TypeAnimation
+                    sequence={[
+                        'Creative', // Types 'One'
+                        350, // Waits 1s
+                        'And Accurate', // Deletes 'One' and types 'Two'
+                        700, // Waits 2s
+                        'And Energetic',
+                        1050,
+                        'And Proficient',
+                        1400,
+                        ' I Am A Web Developer',
+                        1750
+                    ]}
+                    wrapper="span"
+                    cursor={true}
+                    repeat={Infinity}
+                    style={{ fontSize: '1em', display: 'inline-block' }}
+                />
             </p>
-            <p className="text-xs md:text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto">
-                {description ||
-                    `Scroll this component and see the bottom SVG come to life wow this
-        works!`}
-            </p>
-            {/*<div*/}
-            {/*    className="w-full h-[890px] -top-60 md:-top-40  flex items-center justify-center bg-red-transparent absolute ">*/}
-            {/*    <button*/}
-            {/*        className="font-bold bg-white rounded-full md:px-4 md:py-2 px-2 py-1 md:mt-24 mt-8 z-30 md:text-base text-black text-xs  w-fit mx-auto ">*/}
-            {/*        ui.aceternity.com*/}
-            {/*    </button>*/}
-            {/*</div>*/}
+            {/*<p className="text-xs md:text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto">*/}
+            {/*    {description || `Scroll this component and see the bottom SVG come to life wow this works!`}*/}
+            {/*</p>*/}
+            <div
+                className="w-full  h-[890px] -top-60 md:-top-56  flex items-center justify-center bg-red-transparent absolute ">
+                <button className="group relative w-28 h-12 text-neutral-50 bg-transparent p-2 overflow-hidden rounded-md ">
+                    <p className="absolute  font-bold text-lg z-10  duration-500"> Contact Me</p>
+                    <div className="">
+                        <div
+                            className="absolute duration-500 bg-cyan-600 w-4 h-16  bottom-12 group-hover:-bottom-1 delay-500 right-0"></div>
+                        <div
+                            className="absolute duration-500 bg-cyan-600 w-4 h-16  -bottom-16 group-hover:-bottom-1 right-4"></div>
+                        <div
+                            className="absolute duration-500 bg-cyan-600 w-4 h-16  bottom-12 group-hover:-bottom-1 delay-500 right-8"></div>
+                        <div
+                            className="absolute duration-500 bg-cyan-600 w-4 h-16  -bottom-16 group-hover:-bottom-1 right-12"></div>
+                        <div
+                            className="absolute duration-500 bg-cyan-600 w-4 h-16  bottom-12 group-hover:-bottom-1 delay-500 right-16"></div>
+                        <div
+                            className="absolute duration-500 bg-cyan-600 w-4 h-16  -bottom-16 group-hover:-bottom-1 right-20"></div>
+                        <div
+                            className="absolute duration-500 bg-cyan-600 w-4 h-16  bottom-12 group-hover:-bottom-1 delay-500 right-24"></div>
+                    </div>
+                </button>
+            </div>
             <svg
                 width="1440"
                 height="890"

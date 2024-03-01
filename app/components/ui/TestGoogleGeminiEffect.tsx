@@ -29,9 +29,9 @@ export function GoogleGeminiEffectDemo() {
                     background="transparent"
                     minSize={0.6}
                     maxSize={1.4}
-                    particleDensity={100}
+                    particleDensity={20}
                     className="w-full  h-[200vh]"
-                    particleColor="#FFFFFF"
+                    particleColor="#06b6d4"
                 />
             </div>
             <GoogleGeminiEffect
