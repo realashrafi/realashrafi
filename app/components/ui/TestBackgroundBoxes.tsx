@@ -41,9 +41,21 @@ export function BackgroundBoxesDemo() {
                         style={{ fontSize: '1em', display: 'inline-block' }}
                     />
                 </h1>
-                {/*<p className="text-center mt-2 text-neutral-300 relative z-20">*/}
-                {/*    Framer motion is the best animation library ngl*/}
-                {/*</p>*/}
+                <p className="text-center mt-2 text-neutral-300 relative max-h-10 z-20">
+                    <TypeAnimation
+                        sequence={[
+                            '"Join us to discover a world full of knowledge and "',
+                            500,
+                            '"Join us to discover a world full of knowledge and experience."',
+                            1000
+                        ]}
+                        speed={{ type: 'keyStrokeDelayInMs', value: 30 }}
+                        wrapper="span"
+                        cursor={true}
+                        repeat={Infinity}
+                        style={{ fontSize: '1em', display: 'inline-block' }}
+                    />
+                </p>
             {/*</FollowerPointerCard>*/}
         </div>
     );

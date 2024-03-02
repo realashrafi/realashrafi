@@ -29,7 +29,7 @@ export function GoogleGeminiEffectDemo() {
                     background="transparent"
                     minSize={0.6}
                     maxSize={1.4}
-                    particleDensity={20}
+                    particleDensity={10}
                     className="w-full  h-[200vh]"
                     particleColor="#06b6d4"
                 />

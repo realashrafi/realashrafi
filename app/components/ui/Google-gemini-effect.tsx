@@ -21,7 +21,7 @@ export const GoogleGeminiEffect = ({
 }) => {
     return (
         <div className={cn("sticky top-52 lg:top-72", className)}>
-            <p className="text-lg md:text-7xl font-normal pb-4 text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-300">
+            <p className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
                 <TypeAnimation
                     sequence={[
                         'Creative', // Types 'One'
