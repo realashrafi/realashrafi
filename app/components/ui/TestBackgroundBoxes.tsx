@@ -44,10 +44,10 @@ export function BackgroundBoxesDemo() {
                 <p className="text-center mt-2 text-neutral-300 relative max-h-10 z-20">
                     <TypeAnimation
                         sequence={[
-                            '"Join us to discover a world full of knowledge and "',
-                            500,
-                            '"Join us to discover a world full of knowledge and experience."',
-                            1000
+                            '"Join us to discover a world full of knowledge "',
+                            1000,
+                            '"Join us to discover a world full of  and experience."',
+                            2000
                         ]}
                         speed={{ type: 'keyStrokeDelayInMs', value: 30 }}
                         wrapper="span"

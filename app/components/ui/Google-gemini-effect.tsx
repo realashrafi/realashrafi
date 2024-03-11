@@ -3,6 +3,7 @@ import {cn} from "../../utils/cn";
 import {motion, MotionValue} from "framer-motion";
 import React from "react";
 import { TypeAnimation } from 'react-type-animation';
+import Link from "next/link";
 const transition = {
     duration: 0,
     ease: "linear",
@@ -21,9 +22,11 @@ export const GoogleGeminiEffect = ({
 }) => {
     return (
         <div className={cn("sticky top-52 lg:top-72", className)}>
-            <p className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
+            <div className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
                 <TypeAnimation
                     sequence={[
+                        'ALI ASHRAFI',
+                        500,
                         'Creative', // Types 'One'
                         350, // Waits 1s
                         'And Accurate', // Deletes 'One' and types 'Two'
@@ -40,14 +43,14 @@ export const GoogleGeminiEffect = ({
                     repeat={Infinity}
                     style={{ fontSize: '1em', display: 'inline-block' }}
                 />
-            </p>
+            </div>
             {/*<p className="text-xs md:text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto">*/}
             {/*    {description || `Scroll this component and see the bottom SVG come to life wow this works!`}*/}
             {/*</p>*/}
             <div
                 className="w-full  h-[890px] -top-60 md:-top-56  flex items-center justify-center bg-red-transparent absolute ">
-                <button className="group relative w-28 h-12 text-neutral-50 bg-transparent p-2 overflow-hidden rounded-md ">
-                    <p className="absolute  font-bold text-lg z-10  duration-500"> Contact Me</p>
+                <Link href={'/about'} className="group relative w-28 h-12 text-neutral-50 bg-transparent p-2 overflow-hidden rounded-md ">
+                    <p className="absolute  font-bold text-lg z-10  duration-500"> About Me</p>
                     <div className="">
                         <div
                             className="absolute duration-500 bg-cyan-600 w-4 h-16  bottom-12 group-hover:-bottom-1 delay-500 right-0"></div>
@@ -64,11 +67,11 @@ export const GoogleGeminiEffect = ({
                         <div
                             className="absolute duration-500 bg-cyan-600 w-4 h-16  bottom-12 group-hover:-bottom-1 delay-500 right-24"></div>
                     </div>
-                </button>
+                </Link>
             </div>
             <svg
-                width="1440"
-                height="890"
+                width="100vw"
+                height="100vh"
                 viewBox="0 0 1440 890"
                 xmlns="http://www.w3.org/2000/svg"
                 className=" absolute -top-60  md:-top-40 w-full"
