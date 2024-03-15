@@ -5,7 +5,7 @@ import {Tabs} from "../ui/tabs";
 import {TbBrandNextjs} from "react-icons/tb";
 import {SiMui} from "react-icons/si";
 import {SiReactquery} from "react-icons/si";
-
+import { SiFramer } from "react-icons/si";
 function TabsDemo() {
     const skills = [
         {name: "JS (ES6)", icon: <FaJs/>},
@@ -22,6 +22,7 @@ function TabsDemo() {
         {name: "Context", icon: <FaPalette/>},
         {name: "HTML/CSS", icon: <FaCode/>},
         {name: "React Query", icon: <SiReactquery/>},
+        {name: "Framer", icon: <SiFramer/>},
     ];
     const tabs = [
         {
@@ -59,14 +60,14 @@ function TabsDemo() {
                     className="w-[95%] mx-auto xl:w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-cover brightness-50 text-white bg-[url(/img3.wallspic.com-art-digital_art-space-magenta-blue-3840x2160.jpg)]">
                     <p>SKILLS</p>
                     <div className="lg:p-8 rounded-lg shadow-lg">
-                        <h1 className="text-3xl font-bold text-gray-100 mb-4">Skills</h1>
+                        <h1 className="text-3xl font-bold text-gray-100 mb-4">Im Working With</h1>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {skills.map((skill, index) => (
                                 <div key={index}
-                                     className="bg-[#00000050] flex items-center justify-between hover:scale-105 transition-all ease-in p-4 rounded-lg shadow-md overflow-hidden">
-                                    <div className="flex items-center space-x-2">
+                                     className="bg-[#00000050] group flex items-center justify-between hover:scale-105 transition-all ease-in p-4 rounded-lg shadow-md overflow-hidden">
+                                    <div className="flex items-center group-hover:text-[#38bdf8] space-x-2">
                                         <span>{skill.icon}</span>
-                                        <p className="text-lg text-gray-100">{skill.name}</p>
+                                        <p className="text-lg group-hover:text-[#38bdf8] text-gray-100">{skill.name}</p>
                                     </div>
                                 </div>
                             ))}
@@ -97,14 +98,3 @@ function TabsDemo() {
 }
 
 export default TabsDemo
-// const DummyContent = () => {
-//     return (
-//         <Image
-//             src="/linear.webp"
-//             alt="dummy image"
-//             width="1000"
-//             height="1000"
-//             className="object-cover object-left-top h-[60%]  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
-//         />
-//     );
-// };
