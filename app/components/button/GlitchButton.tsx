@@ -4,7 +4,7 @@ const GlitchButton = ({data,id}:any) => {
     return (
         <div className="container cursor-default">
             <div className="radio-wrapper">
-                <input className="input" name="btn" id="value-2" checked={true} type="checkbox"/>
+                <input className="input" name="btn" id="value-2" type="checkbox"/>
                     <div className="btn">
                         {/*// @ts-ignore*/}
                         {data}<span aria-hidden="">_</span>
