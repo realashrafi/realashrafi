@@ -23,8 +23,6 @@ export function GoogleGeminiEffectDemo() {
             className="h-[200vh] bg-slate-950 w-full  relative pt-40 overflow-clip"
             ref={ref}
         >
-            <div
-                className={'absolute w-[100%] h-[100%] bg-gradient-to-t from-slate-950 z-50 via-transparent to-transparent'}></div>
 
             <div className="w-full absolute inset-0 h-screen">
                 <SparklesCore
