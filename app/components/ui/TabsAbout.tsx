@@ -39,22 +39,30 @@ function TabsDemo() {
             value: "summary",
             content: (
                 <div
-                    className="w-[95%] mx-auto xl:w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-cover backdrop-brightness-50   bg-[url(/img1.wallspic.com-purple-point-laser-space-atmosphere-6016x4000.jpg)]">
+                    className="w-[95%] mx-auto xl:w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-neutral-300 bg-cover backdrop-brightness-50   bg-[url(/img1.wallspic.com-purple-point-laser-space-atmosphere-6016x4000.jpg)]">
                     <p>PROFESSIONAL SUMMARY</p>
-                    <div className="lg:p-8 rounded-lg shadow-lg ">
-                        <div className="mb-8 mt-4 lg:mt-12">
-                            <h1 className="text-2xl lg:text-3xl font-bold text-gray-100 mb-4">SUMMARY</h1>
-                            <p className="text-xl lg:text-lg text-gray-100 mb-4">
-                                Experienced front-end developer with a strong command of React.js and Next.js
-                                frameworks. Passionate about crafting seamless user experiences and implementing
-                                innovative solutions to drive web development projects forward.
+                    <div className="lg:p-4 mt-4 rounded-lg shadow-lg ">
+                        <div className="mb-6">
+                            <h1 className="text-2xl lg:text-3xl font-bold text-neutral-300 mb-4">OBJECTIVE</h1>
+                            <p className="text-xl lg:text-lg text-neutral-300 mb-4">
+                                Experienced front-end developer with a strong command of React.js and
+                                Next.js frameworks. To leverage my expertise in frontend development
+                                to create immersive user experiences and dynamic interfaces, while
+                                consistently integrating the latest technologies and design principles.
+                                Passionate about crafting visually stunning and highly functional web
+                                applications, I am dedicated to exceeding client expectations and
+                                contributing to innovative projects that drive user engagement and
+                                satisfaction.
                             </p>
                         </div>
-                        <div className="mb-8">
-                            <h1 className="text-2xl lg:text-3xl font-bold text-gray-100 mb-4">OBJECTIVE</h1>
-                            <p className="text-xl lg:text-lg text-gray-100 mb-4">
-                                To leverage my expertise in front-end development to contribute to cutting-edge
-                                projects, while continuously expanding my skills and knowledge in the field.
+                        <div className="mb-6">
+                            <h1 className="text-2xl lg:text-3xl font-bold text-neutral-300 mb-4">Experience</h1>
+                            <p className="text-xl lg:text-lg text-neutral-300 mb-4">
+                                Front-end Developer | Ideal Media Makeen Institute
+                                2023-2024  Developed and maintained front-end components for web applications
+                                using React.js and Next.js.  Implemented responsive designs using Tailwind CSS and Bootstrap. - Integrated Material-UI (MUI) components for enhanced user interfaces. - Contributed to the development of Progressive Web Applications
+                                (PWA) for improved user experience.  Collaborated with cross-functional teams to deliver high-quality and
+                                scalable software solutions.
                             </p>
                         </div>
                     </div>
@@ -92,12 +100,12 @@ function TabsDemo() {
                 <div
                     className=" w-[95%] mx-auto xl:w-full  overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-cover text-white bg-[url(/img3.wallspic.com-purple_and_white_abstract_painting-3840x2160.jpg)]">
                     <p>CONTACT ME</p>
-                    <div className={'relative flex justify-center items-center w-[100%] h-[100%]'}>
+                    <div className={'relative flex-wrap lg:flex-nowrap flex justify-center items-center w-[100%] h-[100%]'}>
                         {/*<div*/}
                         {/*    className={'w-[100%] bg-right h-[400px] absolute  opacity-70 bg-[url(/photo_2024-03-20_06-45-07-removebg-preview.png)] bg-contain bg-no-repeat'}></div>*/}
                         {contactMeData.map(item => (
                             <div key={item.id}
-                                className="group cursor-pointer m-2 group overflow-hidden p-5 duration-1000 hover:duration-1000 relative w-1/3 h-[300px] bg-[#00000090] glass rounded-xl"
+                                className="group cursor-pointer m-2 group overflow-hidden p-5 duration-1000 hover:duration-1000 relative w-[95%] lg:w-1/3 h-[300px] bg-[#00000090] glass rounded-xl"
                             >
                                 <div
                                     className="bg-transparent group-hover:scale-150 -top-12 -left-12 absolute shadow-yellow-800 shadow-inner rounded-full transition-all ease-in-out group-hover:duration-1000 duration-1000 w-24 h-24"
@@ -136,7 +144,7 @@ function TabsDemo() {
     ];
     return (
         <div
-            className="h-[20rem] md:h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full items-start justify-start my-40">
+            className="h-[90rem] md:h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full items-start justify-start my-40">
             <Tabs tabs={tabs}/>
         </div>
     );
