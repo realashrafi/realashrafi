@@ -39,7 +39,7 @@ function TabsDemo() {
             value: "summary",
             content: (
                 <div
-                    className="w-[95%] mx-auto xl:w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-neutral-300 bg-cover backdrop-brightness-50   bg-[url(/img1.wallspic.com-purple-point-laser-space-atmosphere-6016x4000.jpg)]">
+                    className="w-[95%] mx-auto xl:w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-neutral-300 bg-cover backdrop-brightness-50  bg-[url(/img1.wallspic.com-purple-point-laser-space-atmosphere-6016x4000.jpg)]">
                     <p>PROFESSIONAL SUMMARY</p>
                     <div className="lg:p-4 mt-4 rounded-lg shadow-lg ">
                         <div className="mb-6">
@@ -74,7 +74,7 @@ function TabsDemo() {
             value: "skills",
             content: (
                 <div
-                    className="w-[95%] mx-auto xl:w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-cover  text-white bg-[url(/img3.wallspic.com-art-digital_art-space-magenta-blue-3840x2160.jpg)]">
+                    className="w-[95%] mx-auto xl:w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-cover  text-white bg-[url(/img2.jpg)]">
                     <p>SKILLS</p>
                     <div className="lg:p-8 rounded-lg shadow-lg">
                         <h1 className="text-3xl font-bold text-gray-100 mb-4">Im Working With</h1>
@@ -98,13 +98,13 @@ function TabsDemo() {
             value: "contact",
             content: (
                 <div
-                    className=" w-[95%] mx-auto xl:w-full  overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-cover text-white bg-[url(/img3.wallspic.com-purple_and_white_abstract_painting-3840x2160.jpg)]">
+                    className=" w-[95%] mx-auto xl:w-full  overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-cover text-neutral-300 bg-[url(/img1.jpg)]">
                     <p>CONTACT ME</p>
                     <div className={'relative flex-wrap lg:flex-nowrap flex justify-center items-center w-[100%] h-[100%]'}>
                         {/*<div*/}
                         {/*    className={'w-[100%] bg-right h-[400px] absolute  opacity-70 bg-[url(/photo_2024-03-20_06-45-07-removebg-preview.png)] bg-contain bg-no-repeat'}></div>*/}
                         {contactMeData.map(item => (
-                            <div key={item.id}
+                            <a href={item.url} key={item.id}
                                 className="group cursor-pointer m-2 group overflow-hidden p-5 duration-1000 hover:duration-1000 relative w-[95%] lg:w-1/3 h-[300px] bg-[#00000090] glass rounded-xl"
                             >
                                 <div
@@ -129,12 +129,12 @@ function TabsDemo() {
                                     className="bg-transparent group-hover:scale-150 top-24 left-12 absolute shadow-sky-500 shadow-inner rounded-full transition-all ease-in-out group-hover:duration-1000 duration-1000 w-4 h-4"
                                 ></div>
                                 <div
-                                    className="w-full h-full shadow-xl shadow-neutral-900 p-3 items-center bg-neutral-600 opacity-50 rounded-xl flex-col gap-2 flex justify-center"
+                                    className="w-full h-full shadow-xl shadow-neutral-900 p-3 items-center bg-[#EEEEEE50] rounded-xl flex-col gap-2 flex justify-center"
                                 >
-                                    <span className="text-neutral-50 group-hover:text-[#38bdf8] group-hover:scale-110 transition-all ease-in duration-500 font-bold text-[76px] italic">{item.icon}</span>
-                                    <span className="text-neutral-50 group-hover:text-[#38bdf8] group-hover:scale-110 transition-all ease-in duration-500 font-bold text-2xl italic">{item.name}</span>
+                                    <span className="text-neutral-300 group-hover:text-[#38bdf8] group-hover:scale-110 transition-all ease-in duration-500 font-bold text-[76px] italic">{item.icon}</span>
+                                    <span className="text-neutral-300 group-hover:text-[#38bdf8] group-hover:scale-110 transition-all ease-in duration-500 font-bold text-2xl italic">{item.name}</span>
                                 </div>
-                            </div>
+                            </a>
 
                         ))}
                     </div>

@@ -3,10 +3,11 @@ import React from 'react';
 import {WavyBackground} from "@/app/components/ui/wavy-background";
 import {TypeAnimation} from "react-type-animation";
 import TabsDemo from "@/app/components/ui/TabsAbout";
+import {StickyScrollRevealDemo} from "@/app/about/components/StickyScroll";
 
 const Page = () => {
     return (
-        <div >
+        <div>
             <WavyBackground className="w-full  mx-auto ">
                 <div
                     className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
@@ -36,6 +37,7 @@ const Page = () => {
                 </div>
             </WavyBackground>
             <TabsDemo/>
+            <StickyScrollRevealDemo/>
         </div>
     );
 };
