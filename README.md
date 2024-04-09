@@ -39,27 +39,43 @@ To leverage my expertise in front-end development to contribute to cutting-edge 
 
 ### EXPERIENCE
 
-#### Front-end Developer (Ideal Media Makeen Institute) 2023-2024
-- Led the development of the co-work-makeen project, delivering a Progressive Web Application (PWA) within a month by Next.js latest version.
-- Optimized application performance using Tailwind CSS and Redux, resulting in enhanced user interaction and responsiveness.
-- Designed and implemented custom animations and components for improved user engagement.
-- Developed live user and admin panels with JWT authentication and real-time functionalities.
-- Utilized React Query for seamless data fetching and updates, enhancing overall user experience.
-- Streamlined project structure for improved organization and scalability.
-- **More details:** [Co-Work-Makeen](https://coworkmakeen.liara.run/)
-- **Open source:** [Co-Work-Makeen GitHub](https://github.com/realashrafi/Co-Work-Makeen)
-
-#### React/Redux Async Thunk Developer (Contract) 2023-2023
-- Engineered a commenting system with Redux async thunk middleware, enabling efficient asynchronous actions.
-- Implemented sorting algorithms for organizing user comments based on timestamp.
-- **Open source:** [React-message GitHub](https://github.com/realashrafi/React-message)
-
-#### React BankPortal Developer (Contract) 2023-2023
-- Designed and developed a responsive banking portal, integrating Redux for centralized state management.
-- Leveraged TypeScript to enforce type safety and enhance code quality.
-- **Open source:** [React-Bank-Portal GitHub](https://github.com/realashrafi/React-Bank-Portal)
 
 ---
+
+### Projects
+
+**Cowork Makeen**  
+- Developed a dynamic and interactive website for Cowork Makeen using React.js and Next.js, leveraging modern web technologies.
+- Integrated features such as real-time data visualization with CoreUI React Chartjs, smooth animations with Framer Motion, and efficient image processing with Sharp.
+- Implemented progressive web app functionality for offline access and faster loading using Next-PWA.
+- Utilized advanced UI components and libraries such as Swiper for seamless content navigation and AOS for elegant scroll animations.
+- Employed state management with Redux Toolkit and React Query for efficient data handling and seamless user experience.
+- Enhanced user engagement with interactive elements like React Multi Date Picker and React Modal.
+- Ensured code quality and maintainability with TypeScript, ESLint, and Next.js linting configurations.
+- **Link:** [Cowork Makeen](https://coworkmakeen.liara.run/)
+- **Source:** [GitHub](https://github.com/realashrafi/Co-Work-Makeen)
+
+**Samexxon Holding**  
+- Contributed to the development of a modern and visually appealing website for Samexxon Holding using Next.js and React.js.
+- Implemented smooth page transitions and animations with Framer Motion to enhance user experience and engagement.
+- Leveraged advanced CSS utilities and frameworks such as Tailwind CSS and Tailwind Merge for efficient styling and responsive design.
+- Integrated interactive components like AOS for scroll animations and Swiper for seamless content navigation.
+- Employed Next-PWA to optimize performance and enable offline access, ensuring a smooth browsing experience for users.
+- Ensured code quality and consistency through TypeScript, ESLint, and Next.js linting configurations.
+- **Link:** [Samexxon Holding](https://samexxonholding.ir/)
+
+**Personal Portfolio**  
+- Designed and developed a visually stunning personal portfolio website to showcase skills and projects using Next.js and React.js.
+- Incorporated dynamic particle animations with TSParticles React to create an engaging and interactive user interface.
+- Utilized modern icon sets from Tabler Icons React to enhance visual appeal and convey information effectively.
+- Implemented smooth text animations with React Type Animation to create an engaging user experience.
+- Integrated Tailwind CSS utilities for efficient styling and layout design, ensuring responsiveness across devices.
+- Ensured code quality and consistency through TypeScript, ESLint, and Next.js linting configurations.
+- **Link:** [Personal Portfolio](https://realashrafi.liara.run/)
+- **Source:** [GitHub](https://github.com/realashrafi/realashrafi)
+
+---
+
 
 ### EDUCATION
 - Bachelor of Civil Engineering - Islamic Azad University, Tehran (2017-2022)
