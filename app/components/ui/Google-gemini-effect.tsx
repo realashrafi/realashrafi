@@ -4,6 +4,7 @@ import {motion, MotionValue} from "framer-motion";
 import React from "react";
 import { TypeAnimation } from 'react-type-animation';
 import Link from "next/link";
+import Image from "next/image";
 const transition = {
     duration: 0,
     ease: "linear",
@@ -22,7 +23,8 @@ export const GoogleGeminiEffect = ({
 }) => {
     return (
         <div className={cn("sticky top-52 lg:top-72", className)}>
-            <div className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
+            <div
+                className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
                 <TypeAnimation
                     sequence={[
                         'ALI ASHRAFI',
@@ -41,15 +43,17 @@ export const GoogleGeminiEffect = ({
                     wrapper="span"
                     cursor={true}
                     repeat={Infinity}
-                    style={{ fontSize: '1em', display: 'inline-block' }}
+                    style={{fontSize: '1em', display: 'inline-block'}}
                 />
             </div>
             {/*<p className="text-xs md:text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto">*/}
             {/*    {description || `Scroll this component and see the bottom SVG come to life wow this works!`}*/}
             {/*</p>*/}
+
             <div
                 className="w-full  h-[890px] -top-60 md:-top-56  flex items-center justify-center bg-red-transparent absolute ">
-                <Link href={'/about'} className="group relative w-28 h-12 text-neutral-50 bg-transparent p-2 overflow-hidden rounded-md ">
+                <Link href={'/about'}
+                      className="group relative w-28 h-12 text-neutral-50 bg-transparent p-2 overflow-hidden rounded-md ">
                     <p className="absolute  font-bold text-lg z-10  duration-500"> About Me</p>
                     <div className="">
                         <div
@@ -69,6 +73,7 @@ export const GoogleGeminiEffect = ({
                     </div>
                 </Link>
             </div>
+
             <svg
                 width="100vw"
                 height="100vh"
@@ -191,6 +196,7 @@ export const GoogleGeminiEffect = ({
                     </filter>
                 </defs>
             </svg>
+
         </div>
     );
 };

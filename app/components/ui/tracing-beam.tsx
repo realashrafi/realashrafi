@@ -49,7 +49,7 @@ export const TracingBeam = ({
 
     return (
         <div
-            className={'-[40rem] w-full  bg-slate-950 relative flex flex-col items-center justify-center antialiased'}>
+            className={' w-full  bg-slate-950 relative flex flex-col items-center justify-center antialiased'}>
             <BackgroundBeams/>
             <motion.div
                 ref={ref}

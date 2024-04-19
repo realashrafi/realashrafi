@@ -9,46 +9,50 @@ export function TracingBeamDemo() {
     // @ts-ignore
     return (
         <TracingBeam className="px-6">
-            <div className=" max-w-2xl mx-auto antialiased pt-4 relative">
-                {dummyContent.map((item, index) => (
-                    <div key={`content-${index}`} className="mb-10">
-                        <GlitchButton id={index} data={item.badge}/>
-                        <p className={twMerge("text-xl text-slate-200 md:max-h-10 max-h-16")}>
-                            <TypeAnimation
-                                splitter={(str) => str.split(/(?= )/)} // 'Lorem ipsum dolor' -> ['Lorem', ' ipsum', ' dolor']
-                                sequence={[
-                                    item.title,
-                                    3000,
-                                ]}
-                                speed={{ type: 'keyStrokeDelayInMs', value: 30 }}
-                                omitDeletionAnimation={true}
-                                style={{ fontSize: '1em', display: 'block', minHeight: '200px' }}
-                            />
-                        </p>
-                        <div className="text-sm text-slate-200  prose prose-sm dark:prose-invert">
-                            {item?.image && (
-                                <img
-                                    src={item.image}
-                                    alt="blog thumbnail"
-                                    height="1000"
-                                    width="1000"
-                                    className="rounded-lg mb-10 object-cover"
-                                />
-                            )}
-                            <TypeAnimation
-                                splitter={(str) => str.split(/(?= )/)} // 'Lorem ipsum dolor' -> ['Lorem', ' ipsum', ' dolor']
-                                sequence={[
-                                    //@ts-ignore
-                                    item.description,
-                                    3000,
-                                ]}
-                                speed={{ type: 'keyStrokeDelayInMs', value: 30 }}
-                                omitDeletionAnimation={true}
-                                style={{ fontSize: '1em', display: 'block', minHeight: '200px' }}
-                            />
-                        </div>
-                    </div>
-                ))}
+            <div className=" max-w-2xl  mx-auto antialiased pt-12 relative">
+                <div className={'w-[100%] h-[99vh] pb-12'}>
+                    <iframe className={'w-[100%] h-[100%] rounded-2xl '}
+                            src="https://wonderful-yonath-zqfmh2rkb.storage.iran.liara.space/table%202/resume/ResumeAliAshrafi.pdf"/>
+                </div>
+                {/*{dummyContent.map((item, index) => (*/}
+                {/*    <div key={`content-${index}`} className="mb-10">*/}
+                {/*        <GlitchButton id={index} data={item.badge}/>*/}
+                {/*        <p className={twMerge("text-xl text-slate-200 md:max-h-10 max-h-16")}>*/}
+                {/*            <TypeAnimation*/}
+                {/*                splitter={(str) => str.split(/(?= )/)} // 'Lorem ipsum dolor' -> ['Lorem', ' ipsum', ' dolor']*/}
+                {/*                sequence={[*/}
+                {/*                    item.title,*/}
+                {/*                    3000,*/}
+                {/*                ]}*/}
+                {/*                speed={{ type: 'keyStrokeDelayInMs', value: 30 }}*/}
+                {/*                omitDeletionAnimation={true}*/}
+                {/*                style={{ fontSize: '1em', display: 'block', minHeight: '200px' }}*/}
+                {/*            />*/}
+                {/*        </p>*/}
+                {/*        <div className="text-sm text-slate-200  prose prose-sm dark:prose-invert">*/}
+                {/*            {item?.image && (*/}
+                {/*                <img*/}
+                {/*                    src={item.image}*/}
+                {/*                    alt="blog thumbnail"*/}
+                {/*                    height="1000"*/}
+                {/*                    width="1000"*/}
+                {/*                    className="rounded-lg mb-10 object-cover"*/}
+                {/*                />*/}
+                {/*            )}*/}
+                {/*            <TypeAnimation*/}
+                {/*                splitter={(str) => str.split(/(?= )/)} // 'Lorem ipsum dolor' -> ['Lorem', ' ipsum', ' dolor']*/}
+                {/*                sequence={[*/}
+                {/*                    //@ts-ignore*/}
+                {/*                    item.description,*/}
+                {/*                    3000,*/}
+                {/*                ]}*/}
+                {/*                speed={{ type: 'keyStrokeDelayInMs', value: 30 }}*/}
+                {/*                omitDeletionAnimation={true}*/}
+                {/*                style={{ fontSize: '1em', display: 'block', minHeight: '200px' }}*/}
+                {/*            />*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*))}*/}
             </div>
         </TracingBeam>
     );

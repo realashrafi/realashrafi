@@ -5,8 +5,8 @@ const Page = () => {
     return (
         <div>
             <GoogleGeminiEffectDemo/>
-            <LampDemo/>
             <TracingBeamDemo/>
+            <LampDemo/>
         </div>
     );
 };

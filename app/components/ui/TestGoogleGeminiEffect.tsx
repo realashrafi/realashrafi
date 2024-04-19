@@ -4,6 +4,8 @@ import React from "react";
 import {GoogleGeminiEffect} from "@/app/components/ui/Google-gemini-effect";
 import {BackgroundBeams} from "@/app/components/ui/background-beams";
 import {SparklesCore} from "@/app/components/ui/sparkles";
+import Image from "next/image";
+import gif from "@/public/Animation.gif";
 
 export function GoogleGeminiEffectDemo() {
     const ref = React.useRef(null);
@@ -44,6 +46,9 @@ export function GoogleGeminiEffectDemo() {
                     pathLengthFifth,
                 ]}
             />
+            <div className={' fixed  inset-[40vh] lg:inset-[90vh] flex justify-center items-center scale-50'}>
+                <Image src={gif} alt={''}/>
+            </div>
         </div>
     );
 }
