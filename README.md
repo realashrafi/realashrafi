@@ -6,7 +6,7 @@
 
 - **Email:** Aliashrafi18116@gmail.com
 - **GitHub:** [realashrafi](https://github.com/realashrafi/)
-- **GitHub:** [aliashrafi](https://www.linkedin.com/in/aliashrafi/)
+- **LinkedIn:** [aliashrafi](https://www.linkedin.com/in/aliashrafi/)
 ---
 
 ### SUMMARY
