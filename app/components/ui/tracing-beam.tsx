@@ -49,7 +49,7 @@ export const TracingBeam = ({
 
     return (
         <div
-            className={' w-full  bg-slate-950 relative flex flex-col items-center justify-center antialiased'}>
+            className={' w-full   bg-gradient-to-t from-transparent via-transparent to-[#010517] relative flex flex-col items-center justify-center antialiased'}>
             <BackgroundBeams/>
             <motion.div
                 ref={ref}
