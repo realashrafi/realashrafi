@@ -4,6 +4,7 @@ import {twMerge} from "tailwind-merge";
 import {TracingBeam} from "../ui/tracing-beam";
 import GlitchButton from "@/app/components/button/GlitchButton";
 import {TypeAnimation} from "react-type-animation";
+import Link from "next/link";
 
 export function TracingBeamDemo() {
     // @ts-ignore
@@ -13,6 +14,29 @@ export function TracingBeamDemo() {
                 <div className={'w-[100%] h-[99vh] pb-12'}>
                     <iframe className={'w-[100%] h-[100%] rounded-2xl '}
                             src="https://wonderful-yonath-zqfmh2rkb.storage.iran.liara.space/table%202/resume/AliAshrafiResume.pdf"/>
+                </div>
+                <div
+                    className="w-full pb-6   flex items-center justify-center bg-red-transparent ">
+                    <Link href={'/about'}
+                          className="group relative w-28 h-12 text-neutral-50 bg-transparent p-2 overflow-hidden rounded-md border-cyan-600 border">
+                        <p className="absolute  font-bold text-lg z-10  duration-500"> About Me</p>
+                        <div className="">
+                            <div
+                                className="absolute duration-500 bg-cyan-600 w-4 h-16  bottom-12 group-hover:-bottom-1 delay-500 right-0"></div>
+                            <div
+                                className="absolute duration-500 bg-cyan-600 w-4 h-16  -bottom-16 group-hover:-bottom-1 right-4"></div>
+                            <div
+                                className="absolute duration-500 bg-cyan-600 w-4 h-16  bottom-12 group-hover:-bottom-1 delay-500 right-8"></div>
+                            <div
+                                className="absolute duration-500 bg-cyan-600 w-4 h-16  -bottom-16 group-hover:-bottom-1 right-12"></div>
+                            <div
+                                className="absolute duration-500 bg-cyan-600 w-4 h-16  bottom-12 group-hover:-bottom-1 delay-500 right-16"></div>
+                            <div
+                                className="absolute duration-500 bg-cyan-600 w-4 h-16  -bottom-16 group-hover:-bottom-1 right-20"></div>
+                            <div
+                                className="absolute duration-500 bg-cyan-600 w-4 h-16  bottom-12 group-hover:-bottom-1 delay-500 right-24"></div>
+                        </div>
+                    </Link>
                 </div>
                 {/*{dummyContent.map((item, index) => (*/}
                 {/*    <div key={`content-${index}`} className="mb-10">*/}
