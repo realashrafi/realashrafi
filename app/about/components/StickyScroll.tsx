@@ -14,7 +14,7 @@ const content = [
         source: "https://github.com/realashrafi/Co-Work-Makeen",
         content: (
             <div
-                className="h-full w-full bg-[url(/coworkmakeen.png)] bg-cover ">
+                className="h-full w-full bg-center bg-[url(/coworkmakeen.png)] bg-cover ">
             </div>
         ),
     },
@@ -26,7 +26,7 @@ const content = [
         link: "https://samexxonholding.ir",
         source: "",
         content: (
-            <div className="h-full w-full bg-[url(/samexxonmaya.png)] bg-cover ">
+            <div className="h-full w-full bg-center bg-[url(/samexxonmaya.png)] bg-cover ">
             </div>
         ),
     },
@@ -40,7 +40,7 @@ const content = [
         source: "https://github.com/realashrafi/realashrafi",
         content: (
             <div
-                className="h-full w-full bg-[url(/personalportfolio.png)] bg-cover ">
+                className="h-full w-full bg-center bg-[url(/personalportfolio.png)] bg-cover ">
             </div>
         ),
     }
