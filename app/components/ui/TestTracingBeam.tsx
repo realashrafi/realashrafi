@@ -9,7 +9,7 @@ import Link from "next/link";
 export function TracingBeamDemo() {
     // @ts-ignore
     return (
-        <TracingBeam className="px-6">
+        <TracingBeam className="px-6 ">
             <div className=" max-w-2xl  mx-auto antialiased pt-12 relative">
                 <div className={'w-[100%] h-[99vh] pb-12'}>
                     <iframe className={'w-[100%] h-[100%] rounded-2xl '}
