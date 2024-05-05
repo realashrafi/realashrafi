@@ -31,8 +31,8 @@ export function GoogleGeminiEffectDemo() {
                     id="tsparticlesfullpage"
                     background="transparent"
                     minSize={0.6}
-                    maxSize={3.4}
-                    particleDensity={10}
+                    maxSize={1.4}
+                    particleDensity={50}
                     className="w-full  h-[200vh]"
                     particleColor="#06b6d4"
                 />

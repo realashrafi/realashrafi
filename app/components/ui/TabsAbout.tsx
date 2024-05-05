@@ -6,9 +6,10 @@ import {TbBrandNextjs} from "react-icons/tb";
 import {SiMui} from "react-icons/si";
 import {SiReactquery} from "react-icons/si";
 import {SiFramer} from "react-icons/si";
-import { MdEmail } from "react-icons/md";
-import { FaSquareGithub } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
+import {MdEmail} from "react-icons/md";
+import {FaSquareGithub} from "react-icons/fa6";
+import {FaLinkedin} from "react-icons/fa";
+import {SummaryJson} from "@/app/store/json";
 
 function TabsDemo() {
     const skills = [
@@ -43,26 +44,19 @@ function TabsDemo() {
                     <p>PROFESSIONAL SUMMARY</p>
                     <div className="lg:p-4 mt-4 rounded-lg shadow-lg ">
                         <div className="mb-6">
-                            <h1 className="text-2xl lg:text-3xl font-bold text-neutral-300 mb-4">OBJECTIVE</h1>
+                            <h1 className="text-2xl lg:text-3xl font-bold text-neutral-300 mb-4">{'OBJECTIVE'}</h1>
                             <p className="text-xl lg:text-lg text-neutral-300 mb-4">
-                                Experienced front-end developer with a strong command of React.js and
-                                Next.js frameworks. To leverage my expertise in frontend development
-                                to create immersive user experiences and dynamic interfaces, while
-                                consistently integrating the latest technologies and design principles.
-                                Passionate about crafting visually stunning and highly functional web
-                                applications, I am dedicated to exceeding client expectations and
-                                contributing to innovative projects that drive user engagement and
-                                satisfaction.
+                                {SummaryJson}
                             </p>
                         </div>
                         <div className="mb-6">
-                            <h1 className="text-2xl lg:text-3xl font-bold text-neutral-300 mb-4">Experience</h1>
+                            <h1 className="text-2xl lg:text-3xl font-bold text-neutral-300 mb-4">{'Experience'}</h1>
                             <p className="text-xl lg:text-lg text-neutral-300 mb-4">
-                                Front-end Developer | Ideal Media Makeen Institute
-                                2023-2024  Developed and maintained front-end components for web applications
-                                using React.js and Next.js.  Implemented responsive designs using Tailwind CSS and Bootstrap. - Integrated Material-UI (MUI) components for enhanced user interfaces. - Contributed to the development of Progressive Web Applications
-                                (PWA) for improved user experience.  Collaborated with cross-functional teams to deliver high-quality and
-                                scalable software solutions.
+                                {' Front-end Developer | Ideal Media Makeen Institute\n' +
+                                    '                                2023-2024  Developed and maintained front-end components for web applications\n' +
+                                    '                                using React.js and Next.js.  Implemented responsive designs using Tailwind CSS and Bootstrap. - Integrated Material-UI (MUI) components for enhanced user interfaces. - Contributed to the development of Progressive Web Applications\n' +
+                                    '                                (PWA) for improved user experience.  Collaborated with cross-functional teams to deliver high-quality and\n' +
+                                    '                                scalable software solutions.'}
                             </p>
                         </div>
                     </div>
@@ -100,12 +94,13 @@ function TabsDemo() {
                 <div
                     className=" w-[95%] mx-auto xl:w-full  overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-cover text-neutral-300 bg-[url(/img1.jpg)]">
                     <p>CONTACT ME</p>
-                    <div className={'relative flex-wrap lg:flex-nowrap flex justify-center items-center w-[100%] h-[100%]'}>
+                    <div
+                        className={'relative flex-wrap lg:flex-nowrap flex justify-center items-center w-[100%] h-[100%]'}>
                         {/*<div*/}
                         {/*    className={'w-[100%] bg-right h-[400px] absolute  opacity-70 bg-[url(/photo_2024-03-20_06-45-07-removebg-preview.png)] bg-contain bg-no-repeat'}></div>*/}
                         {contactMeData.map(item => (
                             <a href={item.url} key={item.id}
-                                className="group cursor-pointer m-2 group overflow-hidden p-5 duration-1000 hover:duration-1000 relative w-[95%] lg:w-1/3 h-[300px] bg-[#00000090] glass rounded-xl"
+                               className="group cursor-pointer m-2 group overflow-hidden p-5 duration-1000 hover:duration-1000 relative w-[95%] lg:w-1/3 h-[300px] bg-[#00000090] glass rounded-xl"
                             >
                                 <div
                                     className="bg-transparent group-hover:scale-150 -top-12 -left-12 absolute shadow-yellow-800 shadow-inner rounded-full transition-all ease-in-out group-hover:duration-1000 duration-1000 w-24 h-24"
@@ -131,8 +126,10 @@ function TabsDemo() {
                                 <div
                                     className="w-full h-full shadow-xl shadow-neutral-900 p-3 items-center bg-[#EEEEEE50] rounded-xl flex-col gap-2 flex justify-center"
                                 >
-                                    <span className="text-neutral-300 group-hover:text-[#38bdf8] group-hover:scale-110 transition-all ease-in duration-500 font-bold text-[76px] italic">{item.icon}</span>
-                                    <span className="text-neutral-300 group-hover:text-[#38bdf8] group-hover:scale-110 transition-all ease-in duration-500 font-bold text-2xl italic">{item.name}</span>
+                                    <span
+                                        className="text-neutral-300 group-hover:text-[#38bdf8] group-hover:scale-110 transition-all ease-in duration-500 font-bold text-[76px] italic">{item.icon}</span>
+                                    <span
+                                        className="text-neutral-300 group-hover:text-[#38bdf8] group-hover:scale-110 transition-all ease-in duration-500 font-bold text-2xl italic">{item.name}</span>
                                 </div>
                             </a>
 

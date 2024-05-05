@@ -48,9 +48,9 @@ const content = [
 
 export function StickyScrollRevealDemo() {
     return (
-        <div className="">
-            <div className="h-full w-full flex items-center justify-center  text-neutral-300 text-xl lg:text-4xl font-bold my-8">
-                PROJECT REVIEW
+        <div className="mt-3">
+            <div className="h-full w-full flex items-center justify-center  text-neutral-300 text-xl lg:text-4xl font-bold  my-8">
+                {'PROJECT REVIEW'}
             </div>
             <StickyScroll content={content}/>
         </div>
