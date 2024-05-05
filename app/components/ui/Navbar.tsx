@@ -5,20 +5,22 @@ import {IconHome, IconMessage, IconUser} from "@tabler/icons-react";
 import {cn} from "@/app/utils/cn";
 import Link from "next/link";
 import {motion} from "framer-motion";
+import {usePathname} from "next/navigation";
 
 function FloatingNavDemo() {
     const navItems = [
         {
             name: "Home",
             link: "/",
-            icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white"/>,
+            icon: <IconHome className="h-4 w-4 "/>,
         },
         {
             name: "About",
             link: "/about",
-            icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white"/>,
+            icon: <IconUser className="h-4 w-4 "/>,
         },
     ];
+    const path = usePathname()
     return (
         <div className="relative  w-full">
             <FloatingNav navItems={navItems}/>
@@ -31,15 +33,17 @@ function FloatingNavDemo() {
                         key={`link=${idx}`}
                         href={navItem.link}
                         className={cn(
-                            "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
+                            "relative  items-center flex space-x-1  dark:hover:text-neutral-300 hover:text-neutral-500"
                         )}
                     >
-                        <span className="block sm:hidden">{navItem.icon}</span>
-                        <span className="hidden sm:block text-sm">{navItem.name}</span>
+                        <span
+                            className={`${navItem.link === path ? 'text-[#4dbdeb]' : 'text-neutral-50'} block sm:hidden`}>{navItem.icon}</span>
+                        <span
+                            className={`${navItem.link === path ? 'text-[#4dbdeb]' : 'text-neutral-50'} hidden sm:block text-sm`}>{navItem.name}</span>
                     </Link>
                 ))}
                 <Link href={'/about'}
-                      className="border  font-medium absolute text-xl left-2 lg:left-8 border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
+                      className="border  font-medium absolute text-xl left-2 lg:left-8  border-white/[0.2] text-white px-4 py-2 rounded-full">
                     <span>Realashrafi</span>
                     <span
                         className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px"/>
@@ -66,7 +70,7 @@ function FloatingNavDemo() {
                             </svg>
                             <span
                                 className="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-7 duration-700"
-                             style={{color:"white"}}>
+                                style={{color: "white"}}>
       Linkedin
     </span>
                         </a>
@@ -91,7 +95,7 @@ function FloatingNavDemo() {
                             </svg>
                             <span
                                 className="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-7 duration-700"
-                                style={{color:"white"}}>
+                                style={{color: "white"}}>
       GitHub
     </span>
                         </a>
@@ -117,7 +121,7 @@ function FloatingNavDemo() {
                             </svg>
                             <span
                                 className="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-7 duration-700"
-                                style={{color:"white"}}>
+                                style={{color: "white"}}>
       Instagram
     </span>
                         </a>
