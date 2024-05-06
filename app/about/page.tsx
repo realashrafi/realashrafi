@@ -15,10 +15,10 @@ const Page = () => {
                         sequence={[
                             'ALI ASHRAFI',
                             500,
-                            'Front-end Developer', // Types 'One'
-                            350, // Waits 1s
-                            'React.js', // Deletes 'One' and types 'Two'
-                            700, // Waits 2s
+                            'Front-end Developer',
+                            350,
+                            'React.js',
+                            700,
                             '&',
                             1050,
                             'Next.js',
