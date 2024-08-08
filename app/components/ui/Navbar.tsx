@@ -18,6 +18,14 @@ function FloatingNavDemo() {
             name: "About",
             link: "/about",
             icon: <IconUser className="h-4 w-4 "/>,
+        }, {
+            name: "Hungry Cube",
+            link: "/moving-cube",
+            icon: <IconUser className="h-4 w-4 "/>,
+        }, {
+            name: "Smile Room",
+            link: "/selfie",
+            icon: <IconUser className="h-4 w-4 "/>,
         },
     ];
     const path = usePathname()

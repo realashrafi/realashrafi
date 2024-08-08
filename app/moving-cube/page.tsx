@@ -10,12 +10,20 @@ import React, {
 const MovingCube = () => {
     const canvasRef = useRef(null);
     const moveStep = 10;
-    const [canvasSize, setCanvasSize] = useState({ width: window.innerWidth, height: window.innerHeight });
-    const [cubePosition, setCubePosition] = useState({ x: window.innerWidth / 2 - 25, y: window.innerHeight / 2 - 25 });
+    const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+    const [cubePosition, setCubePosition] = useState({ x: 0, y: 0 });
     const [cubeSize, setCubeSize] = useState(50);
+    const cubeSizeRef = useRef(50);
     const [randomCubes, setRandomCubes] = useState([]);
 
-    const generateRandomCubes = (count) => {
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setCanvasSize({ width: window.innerWidth, height: window.innerHeight });
+            setCubePosition({ x: window.innerWidth / 2 - 25, y: window.innerHeight / 2 - 25 });
+        }
+    }, []);
+
+    const generateRandomCubes = useCallback((count) => {
         const cubes = [];
         for (let i = 0; i < count; i++) {
             const size = Math.random() * 30 + 20; // Random size between 20 and 50
@@ -24,7 +32,7 @@ const MovingCube = () => {
             cubes.push({ x, y, size });
         }
         return cubes;
-    };
+    }, [canvasSize]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -40,8 +48,10 @@ const MovingCube = () => {
     }, [cubeSize]);
 
     useEffect(() => {
-        setRandomCubes(generateRandomCubes(25));
-    }, [canvasSize]);
+        if (canvasSize.width > 0 && canvasSize.height > 0) {
+            setRandomCubes(generateRandomCubes(25));
+        }
+    }, [canvasSize, generateRandomCubes]);
 
     const handleMouseClick = useCallback((event) => {
         const canvas = canvasRef.current;
@@ -63,13 +73,15 @@ const MovingCube = () => {
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        canvas.width = canvasSize.width;
-        canvas.height = canvasSize.height;
-        canvas.addEventListener('click', handleMouseClick);
+        if (canvas) {
+            canvas.width = canvasSize.width;
+            canvas.height = canvasSize.height;
+            canvas.addEventListener('click', handleMouseClick);
 
-        return () => {
-            canvas.removeEventListener('click', handleMouseClick);
-        };
+            return () => {
+                canvas.removeEventListener('click', handleMouseClick);
+            };
+        }
     }, [canvasSize, handleMouseClick]);
 
     const checkCollision = (cube1, cube2) => {
@@ -81,7 +93,24 @@ const MovingCube = () => {
         );
     };
 
-    const handleCollisionsAndDraw = () => {
+    const handleCollisions = useCallback(() => {
+        setRandomCubes((prevCubes) => {
+            return prevCubes.filter((cube) => {
+                if (checkCollision({ x: cubePosition.x, y: cubePosition.y, size: cubeSize }, cube)) {
+                    if (cubeSize > cube.size) {
+                        cubeSizeRef.current += cube.size * 0.3;
+                    } else {
+                        cubeSizeRef.current -= cube.size * 0.1;
+                    }
+                    setCubeSize(cubeSizeRef.current);
+                    return false; // Remove collided cube
+                }
+                return true;
+            });
+        });
+    }, [cubePosition, cubeSize]);
+
+    const draw = useCallback(() => {
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
 
@@ -94,21 +123,6 @@ const MovingCube = () => {
         context.strokeStyle = '#6B7280';
         context.lineWidth = 2;
         context.stroke();
-
-        // Handle collisions
-        setRandomCubes((prevCubes) =>
-            prevCubes.filter((cube) => {
-                if (checkCollision({ x: cubePosition.x, y: cubePosition.y, size: cubeSize }, cube)) {
-                    if (cubeSize > cube.size) {
-                        setCubeSize(cubeSize + cube.size * 0.1);
-                    } else {
-                        setCubeSize(cubeSize - cube.size * 0.1);
-                    }
-                    return false; // Remove collided cube
-                }
-                return true;
-            })
-        );
 
         // Draw moving cube
         context.fillStyle = '#3B82F6';
@@ -125,23 +139,21 @@ const MovingCube = () => {
             context.lineWidth = 2;
             context.strokeRect(cube.x, cube.y, cube.size, cube.size);
         });
-    };
-
-    const animate = () => {
-        handleCollisionsAndDraw();
-        requestAnimationFrame(animate);
-    };
+    }, [cubePosition, cubeSize, randomCubes]);
 
     useEffect(() => {
-        const canvas = canvasRef.current;
-        canvas.width = canvasSize.width;
-        canvas.height = canvasSize.height;
+        const animate = () => {
+            handleCollisions();
+            draw();
+            requestAnimationFrame(animate);
+        };
+
         const animationFrame = requestAnimationFrame(animate);
 
         return () => {
             cancelAnimationFrame(animationFrame);
         };
-    }, [canvasSize, cubePosition, cubeSize, randomCubes]);
+    }, [handleCollisions, draw]);
 
     return (
         <>
@@ -156,4 +168,3 @@ const MovingCube = () => {
 };
 
 export default MovingCube;
-
