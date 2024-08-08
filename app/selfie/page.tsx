@@ -38,6 +38,9 @@ const Page = () => {
     }, [videoRef]);
     return (
         <div className="flex flex-col items-center justify-center ">
+            <div className={'text-white text-3xl text-center'}>
+                Hi please look at the camera and keep smile 😊
+            </div>
             <div className={'flex justify-center items-center w-[90%] h-[90vh] pt-5'}>
                 <video className={'w-[100%] h-[100%] rounded-lg'} ref={videoRef}></video>
             </div>
