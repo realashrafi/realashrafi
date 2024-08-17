@@ -1,6 +1,7 @@
 //@ts-nocheck
 'use client'
 import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 
 const SpeechToTextTerminal = () => {
     const [listening, setListening] = useState(false);
@@ -9,15 +10,16 @@ const SpeechToTextTerminal = () => {
     const [status, setStatus] = useState('Ready');
     const [logs, setLogs] = useState([]);
     const [logCounter, setLogCounter] = useState(1);
-    const [history, setHistory] = useState([]); // برای ذخیره دستورات قبلی
-    const [historyIndex, setHistoryIndex] = useState(-1); // برای پیگیری موقعیت در تاریخچه
+    const [history, setHistory] = useState([]);
+    const [historyIndex, setHistoryIndex] = useState(-1);
     const recognitionRef = useRef(null);
     const terminalRef = useRef(null);
     const inputRef = useRef(null);
     const [isFullscreen, setIsFullscreen] = useState(false);
 
     const addLog = (message) => {
-        const logMessage = `${logCounter}: ${message}`;
+        const currentTime = new Date().toLocaleTimeString();
+        const logMessage = `${logCounter}: [${currentTime}] ${message}`;
         setLogs((prevLogs) => [...prevLogs, logMessage]);
         setLogCounter((prevCounter) => prevCounter + 1);
     };
@@ -87,14 +89,30 @@ const SpeechToTextTerminal = () => {
     };
 
     const toggleFullscreen = () => {
+        const elem = terminalRef.current;
+
         if (!document.fullscreenElement) {
-            terminalRef.current.requestFullscreen();
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) {
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
             setIsFullscreen(true);
         } else {
             if (document.exitFullscreen) {
                 document.exitFullscreen();
-                setIsFullscreen(false);
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
             }
+            setIsFullscreen(false);
         }
     };
 
@@ -118,11 +136,25 @@ const SpeechToTextTerminal = () => {
         }, 5000); // بعد از ۵ ثانیه تشخیص را متوقف کرده و دستور را اجرا می‌کند
     };
 
-    const handleCommand = (command) => {
-        // ذخیره دستور جدید در تاریخچه
+    const translateText = async (text, targetLang) => {
+        try {
+            const response = await axios.post('https://libretranslate.de/translate', {
+                q: text,
+                source: 'auto',
+                target: targetLang,
+                format: 'text'
+            });
+            return response.data.translatedText;
+        } catch (error) {
+            addLog(`Translation error: ${error}`);
+            return text;
+        }
+    };
+
+    const handleCommand = async (command) => {
         if (command.trim() !== '') {
             setHistory((prevHistory) => [...prevHistory, command]);
-            setHistoryIndex(-1); // بازنشانی شاخص تاریخچه
+            setHistoryIndex(-1);
         }
 
         switch (command.trim().toLowerCase()) {
@@ -136,7 +168,7 @@ const SpeechToTextTerminal = () => {
                 clearLogs();
                 break;
             case 'copy':
-                navigator.clipboard.writeText(transcript).then(() => {
+                navigator.clipboard?.writeText(transcript).then(() => {
                     setStatus('Text copied to clipboard!');
                     addLog('Text copied to clipboard.');
                 }).catch(err => {
@@ -160,6 +192,18 @@ const SpeechToTextTerminal = () => {
             case 'power':
                 toggleFullscreen();
                 break;
+            case 'trans-ir':
+                const persianText = await translateText(transcript, 'fa');
+                setTranscript(persianText);
+                setStatus('Translated to Persian');
+                addLog(`Translated to Persian: ${persianText}`);
+                break;
+            case 'trans-en':
+                const englishText = await translateText(transcript, 'en');
+                setTranscript(englishText);
+                setStatus('Translated to English');
+                addLog(`Translated to English: ${englishText}`);
+                break;
             case 'help':
                 setStatus(`Available commands:
                     - start: Begin speech recognition.
@@ -171,6 +215,8 @@ const SpeechToTextTerminal = () => {
                     - recognize: Recognize the current music.
                     - status: Display the current status.
                     - power: Toggle fullscreen mode.
+                    - trans-ir: Translate transcript to Persian.
+                    - trans-en: Translate transcript to English.
                     - help: Show this help message.`);
                 addLog(`Available commands:
                     - start: Begin speech recognition.
@@ -182,6 +228,8 @@ const SpeechToTextTerminal = () => {
                     - recognize: Recognize the current music.
                     - status: Display the current status.
                     - power: Toggle fullscreen mode.
+                    - trans-ir: Translate transcript to Persian.
+                    - trans-en: Translate transcript to English.
                     - help: Show this help message.`);
                 break;
             default:
@@ -198,10 +246,10 @@ const SpeechToTextTerminal = () => {
             inputRef.current.innerText = '';
         } else if (event.key === 'ArrowUp') {
             event.preventDefault();
-            setHistoryIndex((prevIndex) => Math.max(prevIndex - 1, 0)); // حرکت به دستور قبلی
+            setHistoryIndex((prevIndex) => Math.max(prevIndex - 1, 0));
         } else if (event.key === 'ArrowDown') {
             event.preventDefault();
-            setHistoryIndex((prevIndex) => Math.min(prevIndex + 1, history.length - 1)); // حرکت به دستور بعدی
+            setHistoryIndex((prevIndex) => Math.min(prevIndex + 1, history.length - 1));
         }
     };
 

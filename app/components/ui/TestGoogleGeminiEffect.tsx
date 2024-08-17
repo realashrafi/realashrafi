@@ -19,7 +19,7 @@ export function GoogleGeminiEffectDemo() {
     const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2]);
     const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
     const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
-
+console.log("pathLengthFirst", pathLengthFirst, pathLengthSecond, pathLengthThird);
     return (
         <div
             className="h-[200vh] bg-slate-950 w-full  relative pt-40 overflow-clip"

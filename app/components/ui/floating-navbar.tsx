@@ -9,6 +9,7 @@ import {
 import {cn} from "../../utils/cn";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
+import Services from "@/app/components/ui/Services";
 
 export const FloatingNav = ({
                                 navItems,
@@ -76,12 +77,12 @@ export const FloatingNav = ({
                             className={`${navItem.link === path ? 'text-[#4dbdeb]' : 'text-neutral-50'} hidden sm:block text-sm`}>{navItem.name}</span>
                     </Link>
                 ))}
-                <Link href={'/about'}
-                      className="border  font-medium absolute text-xl left-2 lg:left-8  border-white/[0.2] text-white px-4 py-2 rounded-full">
-                    <span>Realashrafi</span>
+                <div
+                      className="border  font-medium absolute text-xl -left-2 lg:left-6  border-white/[0.2] text-white px-4  rounded-full">
+                    <Services title={'Realashrafi'}/>
                     <span
                         className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px"/>
-                </Link>
+                </div>
                 <div className={'flex items-center absolute lg:right-8 right-2'}>
                     <section className="flex group justify-center items-center mx-2">
                         <a

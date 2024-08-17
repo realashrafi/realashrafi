@@ -22,7 +22,7 @@ export default function RootLayout({
         <body className={`${inter.className} bg-[#010517]`}>
         <Navbar/>
         {children}
-        <BackgroundBoxesDemo/>
+        {/*<BackgroundBoxesDemo/>*/}
         </body>
         </html>
     );
