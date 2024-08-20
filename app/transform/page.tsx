@@ -1,7 +1,10 @@
 //@ts-nocheck
-'use client'
+'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import FileSaver from 'file-saver';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 
 const SpeechToTextTerminal = () => {
     const [listening, setListening] = useState(false);
@@ -12,10 +15,39 @@ const SpeechToTextTerminal = () => {
     const [logCounter, setLogCounter] = useState(1);
     const [history, setHistory] = useState([]);
     const [historyIndex, setHistoryIndex] = useState(-1);
+    const [location, setLocation] = useState(null);
     const recognitionRef = useRef(null);
     const terminalRef = useRef(null);
     const inputRef = useRef(null);
     const [isFullscreen, setIsFullscreen] = useState(false);
+
+    useEffect(() => {
+        const requestPermissions = async () => {
+            // درخواست دسترسی به لوکیشن
+            try {
+                await navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        setLocation({ latitude, longitude });
+                    },
+                    (error) => {
+                        console.error('Location access denied:', error.message);
+                    }
+                );
+            } catch (error) {
+                console.error('Error requesting location access:', error);
+            }
+
+            // درخواست دسترسی به میکروفون و دوربین (برای مرورگرهایی که از WebRTC پشتیبانی می‌کنند)
+            try {
+                await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+            } catch (error) {
+                console.error('Microphone or camera access denied:', error.message);
+            }
+        };
+
+        requestPermissions();
+    }, []);
 
     const addLog = (message) => {
         const currentTime = new Date().toLocaleTimeString();
@@ -133,21 +165,32 @@ const SpeechToTextTerminal = () => {
             const recognizedCommand = transcript.trim().toLowerCase();
             addLog(`Recognized command: ${recognizedCommand}`);
             handleCommand(recognizedCommand);
-        }, 5000); // بعد از ۵ ثانیه تشخیص را متوقف کرده و دستور را اجرا می‌کند
+        }, 5000);
     };
 
-    const translateText = async (text, targetLang) => {
+    const downloadFile = async (url) => {
         try {
-            const response = await axios.post('https://libretranslate.de/translate', {
-                q: text,
-                source: 'auto',
-                target: targetLang,
-                format: 'text'
+            const startTime = performance.now(); // ثبت زمان شروع دانلود
+            const response = await axios.get(url, {
+                responseType: 'blob',
+                onDownloadProgress: (progressEvent) => {
+                    const { loaded, total } = progressEvent;
+                    const percentage = Math.floor((loaded / total) * 100);
+                    const elapsedTime = (performance.now() - startTime) / 1000; // محاسبه زمان گذشته
+                    const speed = (loaded / elapsedTime / 1024).toFixed(2); // سرعت دانلود به کیلوبایت بر ثانیه
+                    addLog(`Downloading: ${percentage}% of ${Math.floor(total / 1024)} KB at ${speed} KB/s`);
+                },
             });
-            return response.data.translatedText;
+
+            const endTime = performance.now();
+            const ping = (endTime - startTime).toFixed(2); // محاسبه پینگ
+
+            const fileName = url.split('/').pop();
+            FileSaver.saveAs(response.data, fileName);
+            addLog(`Downloaded file: ${fileName} | Ping: ${ping} ms`);
         } catch (error) {
-            addLog(`Translation error: ${error}`);
-            return text;
+            addLog(`Download error: ${error}`);
+            setStatus('Download failed');
         }
     };
 
@@ -155,6 +198,16 @@ const SpeechToTextTerminal = () => {
         if (command.trim() !== '') {
             setHistory((prevHistory) => [...prevHistory, command]);
             setHistoryIndex(-1);
+        }
+
+        if (command.startsWith('dl ')) {
+            const url = command.slice(3).trim();
+            if (url) {
+                await downloadFile(url);
+            } else {
+                addLog('No URL provided for download.');
+            }
+            return;
         }
 
         switch (command.trim().toLowerCase()) {
@@ -204,33 +257,52 @@ const SpeechToTextTerminal = () => {
                 setStatus('Translated to English');
                 addLog(`Translated to English: ${englishText}`);
                 break;
+            case 'info':
+                const deviceSpecs = getDeviceSpecs();
+                let locationString = 'Location data unavailable';
+
+                if (location && location.latitude && location.longitude) {
+                    locationString = `Latitude: ${location.latitude}, Longitude: ${location.longitude}`;
+
+                    // ساخت URL نقشه
+                    const mapUrl = `https://www.openstreetmap.org/?mlat=${location.latitude}&mlon=${location.longitude}&zoom=12`;
+                    // باز کردن نقشه در تب جدید
+                    window.open(mapUrl, '_blank');
+                }
+                setStatus(`Device Specs: ${deviceSpecs} | Location: ${locationString}`);
+                addLog(`Device Specs: ${deviceSpecs} | Location: ${locationString}`);
+                break;
             case 'help':
                 setStatus(`Available commands:
-                    - start: Begin speech recognition.
-                    - stop: End speech recognition.
-                    - clear: Clear the logs.
-                    - copy: Copy the transcript to clipboard.
-                    - fullscreen: Toggle fullscreen mode.
-                    - switch: Switch language between Persian and English.
-                    - recognize: Recognize the current music.
-                    - status: Display the current status.
-                    - power: Toggle fullscreen mode.
-                    - trans-ir: Translate transcript to Persian.
-                    - trans-en: Translate transcript to English.
-                    - help: Show this help message.`);
+                - start: Begin speech recognition.
+                - stop: End speech recognition.
+                - clear: Clear the logs.
+                - copy: Copy the transcript to clipboard.
+                - fullscreen: Toggle fullscreen mode.
+                - switch: Switch language between Persian and English.
+                - recognize: Recognize the current command.
+                - status: Display the current status.
+                - power: Toggle fullscreen mode.
+                - trans-ir: Translate transcript to Persian.
+                - trans-en: Translate transcript to English.
+                - dl <url>: Download the file from the provided URL.
+                - info: Show device specs and location.
+                - help: Show this help message.`);
                 addLog(`Available commands:
-                    - start: Begin speech recognition.
-                    - stop: End speech recognition.
-                    - clear: Clear the logs.
-                    - copy: Copy the transcript to clipboard.
-                    - fullscreen: Toggle fullscreen mode.
-                    - switch: Switch language between Persian and English.
-                    - recognize: Recognize the current music.
-                    - status: Display the current status.
-                    - power: Toggle fullscreen mode.
-                    - trans-ir: Translate transcript to Persian.
-                    - trans-en: Translate transcript to English.
-                    - help: Show this help message.`);
+                - start: Begin speech recognition.
+                - stop: End speech recognition.
+                - clear: Clear the logs.
+                - copy: Copy the transcript to clipboard.
+                - fullscreen: Toggle fullscreen mode.
+                - switch: Switch language between Persian and English.
+                - recognize: Recognize the current command.
+                - status: Display the current status.
+                - power: Toggle fullscreen mode.
+                - trans-ir: Translate transcript to Persian.
+                - trans-en: Translate transcript to English.
+                - dl <url>: Download the file from the provided URL.
+                - info: Show device specs and location.
+                - help: Show this help message.`);
                 break;
             default:
                 setStatus(`Unknown command: ${command}`);
@@ -238,84 +310,109 @@ const SpeechToTextTerminal = () => {
         }
     };
 
+
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            event.preventDefault();
-            const command = inputRef.current.innerText;
-            handleCommand(command);
-            inputRef.current.innerText = '';
+            const command = event.target.value.trim();
+            if (command) {
+                handleCommand(command);
+            }
+            event.target.value = '';
         } else if (event.key === 'ArrowUp') {
-            event.preventDefault();
-            setHistoryIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+            if (historyIndex === -1) {
+                setHistoryIndex(history.length - 1);
+            } else if (historyIndex > 0) {
+                setHistoryIndex((prevIndex) => prevIndex - 1);
+            }
+            if (history[historyIndex]) {
+                event.target.value = history[historyIndex];
+            }
         } else if (event.key === 'ArrowDown') {
-            event.preventDefault();
-            setHistoryIndex((prevIndex) => Math.min(prevIndex + 1, history.length - 1));
+            if (historyIndex < history.length - 1) {
+                setHistoryIndex((prevIndex) => prevIndex + 1);
+            } else {
+                setHistoryIndex(-1);
+                event.target.value = '';
+            }
+            if (history[historyIndex]) {
+                event.target.value = history[historyIndex];
+            }
         }
     };
 
-    useEffect(() => {
-        const terminalElement = terminalRef.current;
-        if (terminalElement) {
-            terminalElement.scrollTop = terminalElement.scrollHeight;
+    const getDeviceSpecs = () => {
+        return `Platform: ${navigator.platform}, User Agent: ${navigator.userAgent}`;
+    };
+
+    const getLocation = async () => {
+        if (navigator.geolocation) {
+            return new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        resolve(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                    },
+                    (error) => {
+                        reject(`Location access denied: ${error.message}`);
+                    }
+                );
+            });
+        } else {
+            return 'Geolocation is not supported by this browser.';
         }
-    }, [logs, transcript]);
+    };
+
+    const translateText = async (text, targetLang) => {
+        // You should implement this function to translate text using an API or library
+        // For example, you can use Google Translate API or any other translation service
+        // For now, it's just a placeholder
+        return text; // This should be replaced with actual translation logic
+    };
 
     useEffect(() => {
-        if (historyIndex >= 0 && historyIndex < history.length) {
-            inputRef.current.innerText = history[historyIndex];
+        if (terminalRef.current) {
+            terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
         }
-    }, [historyIndex, history]);
+    }, [logs]);
+
+    useEffect(() => {
+        document.title = `Status: ${status}`; // تغییر عنوان صفحه به وضعیت کنونی
+    }, [status]);
 
     return (
-        <div
-            ref={terminalRef}
-            className={`flex w-full min-h-96 flex-col ${isFullscreen ? 'fixed top-0 left-0' : 'justify-center items-center'}`}
-            style={{
-                backgroundColor: '#1f2937',
-                color: 'white',
-                overflow: 'hidden',
-                position: 'relative',
-            }}
-        >
-            {isFullscreen ? (
-                <>
-                    <div className="w-full bg-gray-900 text-center py-2 rounded-t-md font-mono">
-                        Terminal ({language === 'fa-IR' ? 'Persian' : 'English'})
-                    </div>
-                    <div
-                        className="flex-1 bg-black text-green-500 p-4 font-mono text-sm overflow-y-auto"
-                        style={{position: 'relative'}}
-                    >
-                        {logs.map((log, index) => (
-                            <p key={index} className="m-0">{log}</p>
-                        ))}
-                        <div
-                            ref={inputRef}
-                            contentEditable
-                            onKeyDown={handleKeyDown}
-                            className="w-full p-2 mt-4 bg-gray-700 text-white rounded-md border border-gray-600"
-                            style={{
-                                boxSizing: 'border-box',
-                                zIndex: 10,
-                            }}
-                        />
-                    </div>
-                </>
-            ) : (
-                <div
+        <div ref={terminalRef} style={{
+            backgroundColor: '#222',
+            color: '#0f0',
+            padding: '20px',
+            borderRadius: '5px',
+            height: '100vh',
+            overflowY: 'auto'
+        }}>
+            {/*<h3>Speech to Text Terminal</h3>*/}
+            <div style={{marginTop: '10px', whiteSpace: 'pre-wrap'}}>
+                {logs.map((log, index) => (
+                    <div key={index}>{log}</div>
+                ))}
+            </div>
+            <div>
+                <input
                     ref={inputRef}
-                    contentEditable
+                    type="text"
                     onKeyDown={handleKeyDown}
-                    className="w-4/5 p-2 bg-gray-700 text-white rounded-md border border-gray-600"
+                    placeholder="Enter command..."
+                    className={''}
                     style={{
-                        boxSizing: 'border-box',
-                        zIndex: 10,
-                        maxWidth: '800px',
-                        maxHeight: '500px',
-                        overflow: 'hidden',
+                        position:'absolute',
+                        width: '100%',
+                        padding: '10px',
+                        backgroundColor: '#333',
+                        color: '#0f0',
+                        border: 'none',
+                        borderRadius: '5px',
+                        outline: 'none',
                     }}
                 />
-            )}
+            </div>
         </div>
     );
 };
