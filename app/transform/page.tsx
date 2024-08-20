@@ -389,12 +389,12 @@ const SpeechToTextTerminal = () => {
             overflowY: 'auto'
         }}>
             {/*<h3>Speech to Text Terminal</h3>*/}
-            <div style={{marginTop: '10px', whiteSpace: 'pre-wrap'}}>
+            <div style={{marginTop: '10px',paddingBottom:'40px', whiteSpace: 'pre-wrap'}}>
                 {logs.map((log, index) => (
                     <div key={index}>{log}</div>
                 ))}
             </div>
-            <div>
+            <div className={'fixed bottom-0 left-0 w-full'}>
                 <input
                     ref={inputRef}
                     type="text"
@@ -402,7 +402,6 @@ const SpeechToTextTerminal = () => {
                     placeholder="Enter command..."
                     className={''}
                     style={{
-                        position:'absolute',
                         width: '100%',
                         padding: '10px',
                         backgroundColor: '#333',
