@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { LampContainer } from "../ui/lamp";
 import {TypeAnimation} from "react-type-animation";
+import VideoScroller from "@/app/components/VideoScroller";
 
 export function LampDemo() {
     return (

@@ -5,6 +5,7 @@ import {TracingBeam} from "../ui/tracing-beam";
 import GlitchButton from "@/app/components/button/GlitchButton";
 import {TypeAnimation} from "react-type-animation";
 import Link from "next/link";
+import VideoScroller from "@/app/components/VideoScroller";
 
 export function TracingBeamDemo() {
     // @ts-ignore

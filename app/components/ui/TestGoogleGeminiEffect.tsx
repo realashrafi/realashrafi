@@ -22,10 +22,9 @@ export function GoogleGeminiEffectDemo() {
 console.log("pathLengthFirst", pathLengthFirst, pathLengthSecond, pathLengthThird);
     return (
         <div
-            className="h-[200vh] bg-slate-950 w-full  relative pt-40 overflow-clip"
+            className="h-[200vh] bg-gradient-to-t from-slate-950 via-slate-950 to-transparent w-full  relative pt-40 overflow-clip"
             ref={ref}
         >
-
             <div className="w-full absolute inset-0 h-screen">
                 <SparklesCore
                     id="tsparticlesfullpage"
@@ -46,9 +45,9 @@ console.log("pathLengthFirst", pathLengthFirst, pathLengthSecond, pathLengthThir
                     pathLengthFifth,
                 ]}
             />
-            <div className={' fixed  inset-[40vh] lg:inset-[90vh] flex justify-center items-center scale-50'}>
-                <Image src={gif} alt={''}/>
-            </div>
+            {/*<div className={' fixed  inset-[40vh] lg:inset-[90vh] flex justify-center items-center scale-50'}>*/}
+            {/*    <Image src={gif} alt={''}/>*/}
+            {/*</div>*/}
         </div>
     );
 }
