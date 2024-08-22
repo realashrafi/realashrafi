@@ -23,29 +23,29 @@ export const GoogleGeminiEffect = ({
 }) => {
     return (
         <div className={cn("sticky top-52 lg:top-72", className)}>
-            <div
-                className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
-                <TypeAnimation
-                    sequence={[
-                        'ALI ASHRAFI',
-                        500,
-                        'Creative', // Types 'One'
-                        350, // Waits 1s
-                        'And Accurate', // Deletes 'One' and types 'Two'
-                        700, // Waits 2s
-                        'And Energetic',
-                        1050,
-                        'And Proficient',
-                        1400,
-                        ' I Am A Web Developer',
-                        1750
-                    ]}
-                    wrapper="span"
-                    cursor={true}
-                    repeat={Infinity}
-                    style={{fontSize: '1em', display: 'inline-block'}}
-                />
-            </div>
+            {/*<div*/}
+            {/*    className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">*/}
+            {/*    <TypeAnimation*/}
+            {/*        sequence={[*/}
+            {/*            'ALI ASHRAFI',*/}
+            {/*            500,*/}
+            {/*            'Creative', // Types 'One'*/}
+            {/*            350, // Waits 1s*/}
+            {/*            'And Accurate', // Deletes 'One' and types 'Two'*/}
+            {/*            700, // Waits 2s*/}
+            {/*            'And Energetic',*/}
+            {/*            1050,*/}
+            {/*            'And Proficient',*/}
+            {/*            1400,*/}
+            {/*            ' I Am A Web Developer',*/}
+            {/*            1750*/}
+            {/*        ]}*/}
+            {/*        wrapper="span"*/}
+            {/*        cursor={true}*/}
+            {/*        repeat={Infinity}*/}
+            {/*        style={{fontSize: '1em', display: 'inline-block'}}*/}
+            {/*    />*/}
+            {/*</div>*/}
             {/*<p className="text-xs md:text-xl font-normal text-center text-neutral-400 mt-4 max-w-lg mx-auto">*/}
             {/*    {description || `Scroll this component and see the bottom SVG come to life wow this works!`}*/}
             {/*</p>*/}

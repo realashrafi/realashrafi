@@ -1,8 +1,9 @@
 'use client'
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, {useRef, useState, useEffect, useCallback} from 'react';
 import {SparklesCore} from "@/app/components/ui/sparkles";
+import {TypeAnimation} from "react-type-animation";
 
-const VideoScroller = ({ videoSrc, fps }: any) => {
+const VideoScroller = ({videoSrc, fps, speed}: any) => {
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const [scrollPosition, setScrollPosition] = useState<number>(0);
 
@@ -21,7 +22,7 @@ const VideoScroller = ({ videoSrc, fps }: any) => {
             const frameTime = video.duration / totalFrames;
 
             video.currentTime = frameNumber * frameTime;
-            video.playbackRate = 4
+            video.playbackRate = speed
             video.pause(); // Ensure video stays paused
         }
     }, [scrollPosition, fps]);
@@ -45,7 +46,7 @@ const VideoScroller = ({ videoSrc, fps }: any) => {
     }, [updateVideoTime]);
 
     return (
-        <div className="relative overflow-hidden h-[100vh]">
+        <div className="relative overflow-hidden h-[100vh] ">
             <video
                 ref={videoRef}
                 src={videoSrc}
