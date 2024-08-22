@@ -1,9 +1,7 @@
 'use client'
 import React, {useRef, useState, useEffect, useCallback} from 'react';
-import {SparklesCore} from "@/app/components/ui/sparkles";
-import {TypeAnimation} from "react-type-animation";
 
-const VideoScroller = ({videoSrc, fps, speed}: any) => {
+const VideoScroller = ({videoSrc, fps, speed}: { videoSrc: string; fps: number; speed: number; }) => {
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const [scrollPosition, setScrollPosition] = useState<number>(0);
 
@@ -22,10 +20,10 @@ const VideoScroller = ({videoSrc, fps, speed}: any) => {
             const frameTime = video.duration / totalFrames;
 
             video.currentTime = frameNumber * frameTime;
-            video.playbackRate = speed
+            video.playbackRate = speed;
             video.pause(); // Ensure video stays paused
         }
-    }, [scrollPosition, fps]);
+    }, [scrollPosition, fps, speed]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -45,8 +43,18 @@ const VideoScroller = ({videoSrc, fps, speed}: any) => {
         };
     }, [updateVideoTime]);
 
+    // Attempt to play video after component mounts to ensure it's loaded
+    useEffect(() => {
+        const video = videoRef.current;
+        if (video) {
+            video.play().catch((error) => {
+                console.error("Failed to play video automatically:", error);
+            });
+        }
+    }, []);
+
     return (
-        <div className="relative overflow-hidden h-[100vh] ">
+        <div className="relative overflow-hidden h-[100vh]">
             <video
                 ref={videoRef}
                 src={videoSrc}
@@ -54,6 +62,7 @@ const VideoScroller = ({videoSrc, fps, speed}: any) => {
                 muted
                 playsInline
                 preload="auto" // Preload the video
+
             />
         </div>
     );
