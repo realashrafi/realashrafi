@@ -21,7 +21,7 @@ const VideoScroller = ({ videoSrc, fps }: any) => {
             const frameTime = video.duration / totalFrames;
 
             video.currentTime = frameNumber * frameTime;
-            video.playbackRate = 2
+            video.playbackRate = 4
             video.pause(); // Ensure video stays paused
         }
     }, [scrollPosition, fps]);

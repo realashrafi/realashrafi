@@ -8,7 +8,7 @@ const Page = () => {
     
     return (
         <div>
-            <VideoScroller videoSrc={'/7565822-hd_2048_1080_25fps.mp4'} fps={120}/>
+            <VideoScroller videoSrc={'/0822.mp4'} fps={120}/>
             <GoogleGeminiEffectDemo/>
             <TracingBeamDemo/>
             <LampDemo/>
