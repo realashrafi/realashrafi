@@ -12,7 +12,7 @@ const Page = () => {
     return (
         <div>
             <InterView/>
-            <VideoScroller videoSrc={'/0822.mp4'} fps={120} speed={4}/>
+            {/*<VideoScroller videoSrc={'/0822.mp4'} fps={120} speed={4}/>*/}
             <GoogleGeminiEffectDemo/>
             <TracingBeamDemo/>
             <LampDemo/>
