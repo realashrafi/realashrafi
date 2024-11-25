@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useRef, useEffect, useState } from 'react';
 import Tesseract from 'tesseract.js';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
@@ -12,7 +12,6 @@ const ObjectDetectionComponent: React.FC = () => {
     const [plates, setPlates] = useState<Array<{ plate: string, time: string }>>([]);
 
     useEffect(() => {
-        // Load object detection model
         const loadModel = async () => {
             const loadedModel = await cocoSsd.load();
             setModel(loadedModel);
@@ -21,45 +20,63 @@ const ObjectDetectionComponent: React.FC = () => {
     }, []);
 
     const startVideo = () => {
-        if (navigator?.mediaDevices?.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({
-                video: {
-                    facingMode: isBackCamera ? 'environment' : 'user',
-                },
+        navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: isBackCamera ? 'environment' : 'user',
+                width: { ideal: 1280 },
+                height: { ideal: 720 },
+                frameRate: { ideal: 30 },
+            },
+        })
+            .then((stream) => {
+                if (videoRef.current) videoRef.current.srcObject = stream;
             })
-                .then((stream) => {
-                    if (videoRef.current) {
-                        videoRef.current.srcObject = stream;
-                    }
-                })
-                .catch(console.error);
-        }
+            .catch(console.error);
     };
 
     useEffect(() => {
         startVideo();
     }, [isBackCamera]);
 
+    const preprocessImage = (imageData: ImageData): ImageData => {
+        const canvas = document.createElement('canvas');
+        canvas.width = imageData.width;
+        canvas.height = imageData.height;
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+            ctx.putImageData(imageData, 0, 0);
+            const imageDataBW = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < imageDataBW.data.length; i += 4) {
+                const avg = (imageDataBW.data[i] + imageDataBW.data[i + 1] + imageDataBW.data[i + 2]) / 3;
+                const binaryColor = avg > 127 ? 255 : 0;
+                imageDataBW.data[i] = imageDataBW.data[i + 1] = imageDataBW.data[i + 2] = binaryColor;
+            }
+            ctx.putImageData(imageDataBW, 0, 0);
+        }
+        return ctx!.getImageData(0, 0, canvas.width, canvas.height);
+    };
+
     const detectObjects = async () => {
         if (model && videoRef.current && canvasRef.current) {
             const predictions = await model.detect(videoRef.current);
             const ctx = canvasRef.current.getContext('2d');
+
             if (ctx) {
                 ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+
                 predictions.forEach(async (prediction) => {
                     const [x, y, width, height] = prediction.bbox;
-
-                    // Draw bounding box
                     ctx.strokeStyle = 'red';
                     ctx.lineWidth = 2;
                     ctx.strokeRect(x, y, width, height);
 
-                    // Extract plate from image
                     const image = ctx.getImageData(x, y, width, height);
-                    const plateText = await extractPlateText(image);
-                    if (plateText) {
-                        const newPlate = { plate: plateText, time: new Date().toISOString() };
-                        updateSessionPlates(newPlate);
+                    const preprocessedImage = preprocessImage(image);
+                    const plateText = await extractPlateText(preprocessedImage);
+
+                    if (plateText && isValidPlate(plateText)) {
+                        const formattedPlate = convertPersianNumbers(plateText);
+                        updateSessionPlates({ plate: formattedPlate, time: new Date().toISOString() });
                     }
 
                     ctx.fillStyle = 'red';
@@ -72,7 +89,12 @@ const ObjectDetectionComponent: React.FC = () => {
 
     const extractPlateText = async (imageData: ImageData): Promise<string | null> => {
         try {
-            const { data: { text } } = await Tesseract.recognize(imageData, 'eng');
+            const { data: { text } } = await Tesseract.recognize(
+                imageData,
+                'ara',
+                { langPath: '/tessdata', cacheMethod: 'none' }
+            );
+            console.log('Extracted Plate Text:', text.trim());
             return text.trim();
         } catch (error) {
             console.error('Error reading plate text:', error);
@@ -80,17 +102,32 @@ const ObjectDetectionComponent: React.FC = () => {
         }
     };
 
+    const convertPersianNumbers = (text: string): string => {
+        const persianNumbers: { [key: string]: string } = {
+            '۰': '0', '۱': '1', '۲': '2', '۳': '3', '۴': '4',
+            '۵': '5', '۶': '6', '۷': '7', '۸': '8', '۹': '9',
+        };
+        return text.replace(/[۰-۹]/g, (match) => persianNumbers[match] || match);
+    };
+
+    const isValidPlate = (text: string): boolean => {
+        const plateRegex = /^[آ-ی]{1,3}\s?\d{1,3}\s?[آ-ی]{1,2}\s?\d{2}$/;
+        return plateRegex.test(text);
+    };
+
     const updateSessionPlates = (newPlate: { plate: string, time: string }) => {
         const currentPlates = JSON.parse(sessionStorage.getItem('plates') || '[]');
-        const updatedPlates = [...currentPlates, newPlate];
-        sessionStorage.setItem('plates', JSON.stringify(updatedPlates));
-        setPlates(updatedPlates);
+        if (!currentPlates.some((plate: any) => plate.plate === newPlate.plate)) {
+            const updatedPlates = [...currentPlates, newPlate];
+            sessionStorage.setItem('plates', JSON.stringify(updatedPlates));
+            setPlates(updatedPlates);
+        }
     };
 
     useEffect(() => {
         const interval = setInterval(() => {
             detectObjects();
-        }, 100);
+        }, 500);
         return () => clearInterval(interval);
     }, [model]);
 
@@ -136,9 +173,9 @@ const ObjectDetectionComponent: React.FC = () => {
             >
                 Switch Camera
             </button>
-            <div style={{ marginTop: '20px', textAlign: 'center' }}>
-                <h3>Detected Plates:</h3>
-                <ul>
+            <div style={{ marginTop: '40px', textAlign: 'center' }}>
+                <h3 className='text-white'>Detected Plates:</h3>
+                <ul className='text-white'>
                     {plates.map((plate, index) => (
                         <li key={index}>{plate.plate} - {new Date(plate.time).toLocaleTimeString()}</li>
                     ))}
