@@ -1,9 +1,9 @@
 //@ts-nocheck
 'use client';
-import React, { useState, useRef, useEffect } from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import axios from 'axios';
 import FileSaver from 'file-saver';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import {MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const SpeechToTextTerminal = () => {
@@ -27,8 +27,8 @@ const SpeechToTextTerminal = () => {
             try {
                 await navigator.geolocation.getCurrentPosition(
                     (position) => {
-                        const { latitude, longitude } = position.coords;
-                        setLocation({ latitude, longitude });
+                        const {latitude, longitude} = position.coords;
+                        setLocation({latitude, longitude});
                     },
                     (error) => {
                         console.error('Location access denied:', error.message);
@@ -40,7 +40,7 @@ const SpeechToTextTerminal = () => {
 
             // درخواست دسترسی به میکروفون و دوربین (برای مرورگرهایی که از WebRTC پشتیبانی می‌کنند)
             try {
-                await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+                await navigator.mediaDevices.getUserMedia({audio: true, video: true});
             } catch (error) {
                 console.error('Microphone or camera access denied:', error.message);
             }
@@ -54,6 +54,11 @@ const SpeechToTextTerminal = () => {
         const logMessage = `${logCounter}: [${currentTime}] ${message}`;
         setLogs((prevLogs) => [...prevLogs, logMessage]);
         setLogCounter((prevCounter) => prevCounter + 1);
+        if (navigator.vibrate) {
+            navigator.vibrate(200); // 200 میلی‌ثانیه ویبریشن
+        } else {
+            console.log('Vibration not supported');
+        }
     };
 
     const clearLogs = () => {
@@ -174,7 +179,7 @@ const SpeechToTextTerminal = () => {
             const response = await axios.get(url, {
                 responseType: 'blob',
                 onDownloadProgress: (progressEvent) => {
-                    const { loaded, total } = progressEvent;
+                    const {loaded, total} = progressEvent;
                     const percentage = Math.floor((loaded / total) * 100);
                     const elapsedTime = (performance.now() - startTime) / 1000; // محاسبه زمان گذشته
                     const speed = (loaded / elapsedTime / 1024).toFixed(2); // سرعت دانلود به کیلوبایت بر ثانیه
@@ -206,6 +211,17 @@ const SpeechToTextTerminal = () => {
                 await downloadFile(url);
             } else {
                 addLog('No URL provided for download.');
+            }
+            return;
+        }
+        if (command.startsWith('js ')) {
+            const jsCode = command.slice(3).trim();
+            try {
+                // استفاده از eval برای اجرای کد جاوا اسکریپت
+                const result = eval(jsCode); // یا می‌تونی از Function هم استفاده کنی
+                addLog(`Result: ${result}`);
+            } catch (error) {
+                addLog(`Error: ${error.message}`);
             }
             return;
         }
@@ -274,36 +290,38 @@ const SpeechToTextTerminal = () => {
                 break;
             case 'help':
                 setStatus(`Available commands:
-                - start: Begin speech recognition.
-                - stop: End speech recognition.
-                - clear: Clear the logs.
-                - copy: Copy the transcript to clipboard.
-                - fullscreen: Toggle fullscreen mode.
-                - switch: Switch language between Persian and English.
-                - recognize: Recognize the current command.
-                - status: Display the current status.
-                - power: Toggle fullscreen mode.
-                - trans-ir: Translate transcript to Persian.
-                - trans-en: Translate transcript to English.
-                - dl <url>: Download the file from the provided URL.
-                - info: Show device specs and location.
-                - help: Show this help message.`);
+    - start: Begin speech recognition and start listening.
+    - stop: End speech recognition and stop listening.
+    - clear: Clear the logs and reset the counter.
+    - copy: Copy the current transcript to the clipboard.
+    - fullscreen: Toggle fullscreen mode.
+    - switch: Switch between Persian (fa-IR) and English (en-US) language for speech recognition.
+    - recognize: Start listening and execute the command after 5 seconds.
+    - status: Display the current status of the system.
+    - power: Toggle fullscreen mode (same as fullscreen).
+    - trans-ir: Translate the transcript to Persian.
+    - trans-en: Translate the transcript to English.
+    - dl <url>: Download the file from the provided URL and log progress.
+    - info: Show device specs (platform, user agent) and location (if available).
+    - help: Show this help message with a list of available commands.`);
+
                 addLog(`Available commands:
-                - start: Begin speech recognition.
-                - stop: End speech recognition.
-                - clear: Clear the logs.
-                - copy: Copy the transcript to clipboard.
-                - fullscreen: Toggle fullscreen mode.
-                - switch: Switch language between Persian and English.
-                - recognize: Recognize the current command.
-                - status: Display the current status.
-                - power: Toggle fullscreen mode.
-                - trans-ir: Translate transcript to Persian.
-                - trans-en: Translate transcript to English.
-                - dl <url>: Download the file from the provided URL.
-                - info: Show device specs and location.
-                - help: Show this help message.`);
+    - start: Begin speech recognition and start listening.
+    - stop: End speech recognition and stop listening.
+    - clear: Clear the logs and reset the counter.
+    - copy: Copy the current transcript to the clipboard.
+    - fullscreen: Toggle fullscreen mode.
+    - switch: Switch between Persian (fa-IR) and English (en-US) language for speech recognition.
+    - recognize: Start listening and execute the command after 5 seconds.
+    - status: Display the current status of the system.
+    - power: Toggle fullscreen mode (same as fullscreen).
+    - trans-ir: Translate the transcript to Persian.
+    - trans-en: Translate the transcript to English.
+    - dl <url>: Download the file from the provided URL and log progress.
+    - info: Show device specs (platform, user agent) and location (if available).
+    - help: Show this help message with a list of available commands.`);
                 break;
+
             default:
                 setStatus(`Unknown command: ${command}`);
                 addLog(`Unknown command: ${command}`);
@@ -349,7 +367,7 @@ const SpeechToTextTerminal = () => {
             return new Promise((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
-                        const { latitude, longitude } = position.coords;
+                        const {latitude, longitude} = position.coords;
                         resolve(`Latitude: ${latitude}, Longitude: ${longitude}`);
                     },
                     (error) => {
@@ -389,7 +407,7 @@ const SpeechToTextTerminal = () => {
             overflowY: 'auto'
         }}>
             {/*<h3>Speech to Text Terminal</h3>*/}
-            <div style={{marginTop: '10px',paddingBottom:'40px', whiteSpace: 'pre-wrap'}}>
+            <div style={{marginTop: '10px', paddingBottom: '40px', whiteSpace: 'pre-wrap'}}>
                 {logs.map((log, index) => (
                     <div key={index}>{log}</div>
                 ))}
