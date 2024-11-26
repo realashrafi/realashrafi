@@ -15,13 +15,14 @@ const MovingCube = () => {
     const [cubeSize, setCubeSize] = useState(50);
     const cubeSizeRef = useRef(50);
     const [randomCubes, setRandomCubes] = useState([]);
+    const [isGameStarted, setIsGameStarted] = useState(false);
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
+        if (isGameStarted && typeof window !== 'undefined') {
             setCanvasSize({ width: window.innerWidth, height: window.innerHeight });
             setCubePosition({ x: window.innerWidth / 2 - 25, y: window.innerHeight / 2 - 25 });
         }
-    }, []);
+    }, [isGameStarted]);
 
     const generateRandomCubes = useCallback((count) => {
         const cubes = [];
@@ -112,34 +113,52 @@ const MovingCube = () => {
 
     const draw = useCallback(() => {
         const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
+        if (canvas) {
+            const context = canvas.getContext('2d');
 
-        context.clearRect(0, 0, canvas.width, canvas.height);
+            if (context) {
+                context.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw line (surface)
-        context.beginPath();
-        context.moveTo(0, canvas.height / 2);
-        context.lineTo(canvas.width, canvas.height / 2);
-        context.strokeStyle = '#6B7280';
-        context.lineWidth = 2;
-        context.stroke();
+                // Draw line (surface)
+                context.beginPath();
+                context.moveTo(0, canvas.height / 2);
+                context.lineTo(canvas.width, canvas.height / 2);
+                context.strokeStyle = '#6B7280';
+                context.lineWidth = 2;
+                context.stroke();
 
-        // Draw moving cube
-        context.fillStyle = '#3B82F6';
-        context.fillRect(cubePosition.x, cubePosition.y, cubeSize, cubeSize);
-        context.strokeStyle = '#1E40AF';
-        context.lineWidth = 2;
-        context.strokeRect(cubePosition.x, cubePosition.y, cubeSize, cubeSize);
+                // Draw moving cube
+                context.fillStyle = '#3B82F6';
+                context.fillRect(cubePosition.x, cubePosition.y, cubeSize, cubeSize);
+                context.strokeStyle = '#1E40AF';
+                context.lineWidth = 2;
+                context.strokeRect(cubePosition.x, cubePosition.y, cubeSize, cubeSize);
 
-        // Draw random cubes
-        randomCubes.forEach((cube) => {
-            context.fillStyle = '#10B981';
-            context.fillRect(cube.x, cube.y, cube.size, cube.size);
-            context.strokeStyle = '#047857';
-            context.lineWidth = 2;
-            context.strokeRect(cube.x, cube.y, cube.size, cube.size);
-        });
+                // Draw random cubes
+                randomCubes.forEach((cube) => {
+                    context.fillStyle = '#10B981';
+                    context.fillRect(cube.x, cube.y, cube.size, cube.size);
+                    context.strokeStyle = '#047857';
+                    context.lineWidth = 2;
+                    context.strokeRect(cube.x, cube.y, cube.size, cube.size);
+                });
+            }
+        }
     }, [cubePosition, cubeSize, randomCubes]);
+
+    const handleFullscreen = () => {
+        const element = document.documentElement;  // Use the entire document for fullscreen
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) { // Firefox
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) { // Chrome, Safari, Opera
+            element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) { // IE/Edge
+            element.msRequestFullscreen();
+        }
+    };
+
 
     useEffect(() => {
         const animate = () => {
@@ -155,14 +174,69 @@ const MovingCube = () => {
         };
     }, [handleCollisions, draw]);
 
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            setCubePosition((prevPosition) => {
+                let newX = prevPosition.x;
+                let newY = prevPosition.y;
+
+                switch (event.key) {
+                    case 'ArrowUp':
+                        newY = prevPosition.y - moveStep;
+                        break;
+                    case 'ArrowDown':
+                        newY = prevPosition.y + moveStep;
+                        break;
+                    case 'ArrowLeft':
+                        newX = prevPosition.x - moveStep;
+                        break;
+                    case 'ArrowRight':
+                        newX = prevPosition.x + moveStep;
+                        break;
+                    default:
+                        break;
+                }
+
+                return { x: newX, y: newY };
+            });
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, []);
+
+    const startGame = () => {
+        setIsGameStarted(true);
+        handleFullscreen();
+    };
+
     return (
         <>
-            <div className={'text-white text-3xl text-center'}>
-                this is hungry cube
-            </div>
-            <div className="flex flex-col items-center justify-center h-screen scale-95 rounded-lg bg-gray-100">
-                <canvas ref={canvasRef} className="rounded-lg shadow-lg"/>
-            </div>
+            {!isGameStarted ? (
+                <div className="flex items-center justify-center h-screen">
+                    <div className={'text-white text-3xl text-center mx-4'}>
+                        this is hungry cube
+                    </div>
+                    <button
+                        onClick={startGame}
+                        className="bg-blue-500 text-white text-3xl px-6 py-3 rounded-lg shadow-lg"
+                    >
+                        Start Game
+                    </button>
+                </div>
+            ) : (
+                <div className="flex flex-col items-center justify-center  h-screen scale-95 rounded-lg bg-gray-100">
+                        <canvas
+                            ref={canvasRef}
+                            className="rounded-lg shadow-lg"
+                            width={canvasSize.width}
+                            height={canvasSize.height}
+                        />
+                    </div>
+            )}
         </>
     );
 };
