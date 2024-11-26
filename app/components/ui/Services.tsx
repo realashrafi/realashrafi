@@ -11,6 +11,8 @@ function Services({title}:any) {
                     <HoveredLink href="/selfie">{'Smile Room'}</HoveredLink>
                     <HoveredLink href="/moving-cube">{'Hungry Cube'}</HoveredLink>
                     <HoveredLink href="/transform">{'Terminal'}</HoveredLink>
+                    <HoveredLink href="/model">{'Model'}</HoveredLink>
+                    <HoveredLink href="/model-v2">{'Model V2'}</HoveredLink>
                 </div>
             </MenuItem>
         </Menu>
