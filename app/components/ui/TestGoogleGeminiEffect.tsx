@@ -1,4 +1,4 @@
-"use client";
+    "use client";
 import { useScroll, useTransform } from "framer-motion";
 import React from "react";
 import {GoogleGeminiEffect} from "@/app/components/ui/Google-gemini-effect";
@@ -25,17 +25,7 @@ console.log("pathLengthFirst", pathLengthFirst, pathLengthSecond, pathLengthThir
             className="h-[200vh] bg-gradient-to-t from-slate-950 via-slate-950 to-transparent w-full  relative pt-40 overflow-clip"
             ref={ref}
         >
-            <div className="w-full absolute inset-0 h-screen">
-                <SparklesCore
-                    id="tsparticlesfullpage"
-                    background="transparent"
-                    minSize={0.6}
-                    maxSize={1.4}
-                    particleDensity={50}
-                    className="w-full  h-[200vh]"
-                    particleColor="#06b6d4"
-                />
-            </div>
+
             <GoogleGeminiEffect
                 pathLengths={[
                     pathLengthFirst,

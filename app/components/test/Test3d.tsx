@@ -8,8 +8,9 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 // بارگذاری پلاگین ScrollTo
 gsap.registerPlugin(ScrollToPlugin);
 
-const GLTFModel = ({ position, rotationX, rotationY }:any) => {
-    const { scene } = useGLTF('/model/scene.gltf'); // مسیر مدل
+const GLTFModel = ({ position, rotationX, rotationY,modelPath }:any) => {
+    // @ts-ignore
+    const { scene } = useGLTF(modelPath); // مسیر مدل
     if (!scene) return null; // اگر مدل هنوز بارگذاری نشده باشد، هیچ‌چیز نمایش نمی‌دهیم
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -28,7 +29,7 @@ const GLTFModel = ({ position, rotationX, rotationY }:any) => {
     </>);
 };
 
-const Scene = ({ scrollY, mouseY, mouseX }:any) => {
+const Scene = ({ scrollY, mouseY, mouseX ,modelPath}:any) => {
     const { camera } = useThree(); // دسترسی به دوربین
     const ref = useRef(); // ایجاد ref برای مدل
 
@@ -54,12 +55,12 @@ const Scene = ({ scrollY, mouseY, mouseX }:any) => {
             <ambientLight intensity={0.5} />
             <directionalLight position={[0, 10, 10]} />
             {/* مدل سه‌بعدی */}
-            <GLTFModel position={[0, 0, 1]} rotationX={mouseX} rotationY={mouseY} />
+            <GLTFModel position={[0, 0, 1]} rotationX={mouseX} rotationY={mouseY} modelPath={modelPath} />
         </>
     );
 };
 
-const Model3D = () => {
+const Model3D = ({modelPath}:any) => {
     const [scrollY, setScrollY] = useState(0);
     const [mouseY, setMouseY] = useState(0);
     const [mouseX, setMouseX] = useState(0);
@@ -93,7 +94,7 @@ const Model3D = () => {
     return (
         <div style={{ height:'110vh', overflow: 'hidden' }}  className='sticky top-0' > {/* ارتفاع زیاد برای اسکرول */}
             <Canvas>
-                <Scene scrollY={scrollY} mouseY={mouseY} mouseX={mouseX} />
+                <Scene scrollY={scrollY} mouseY={mouseY} mouseX={mouseX} modelPath={modelPath}/>
             </Canvas>
         </div>
     );
