@@ -13,6 +13,7 @@ function Services({title}:any) {
                     <HoveredLink href="/transform">{'Terminal'}</HoveredLink>
                     <HoveredLink href="/model">{'Model'}</HoveredLink>
                     <HoveredLink href="/model-v2">{'Model V2'}</HoveredLink>
+                    <HoveredLink href="/connection">{'Equalizer'}</HoveredLink>
                 </div>
             </MenuItem>
         </Menu>
