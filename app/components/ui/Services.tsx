@@ -14,6 +14,8 @@ function Services({title}:any) {
                     <HoveredLink href="/model">{'Model'}</HoveredLink>
                     <HoveredLink href="/model-v2">{'Model V2'}</HoveredLink>
                     <HoveredLink href="/connection">{'Equalizer'}</HoveredLink>
+                    <HoveredLink href="/rooms">{'Room'}</HoveredLink>
+                    <HoveredLink href="/hud">{'HUD'}</HoveredLink>
                 </div>
             </MenuItem>
         </Menu>
