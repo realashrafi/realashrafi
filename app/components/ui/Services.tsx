@@ -9,6 +9,7 @@ function Services({title}:any) {
             <MenuItem setActive={setActive} active={active} item={title}>
                 <div className="flex flex-col space-y-4 text-sm">
                     <HoveredLink href="/selfie">{'Smile Room'}</HoveredLink>
+                    <HoveredLink href="/r-p-z">{'R-P-S'}</HoveredLink>
                     <HoveredLink href="/moving-cube">{'Hungry Cube'}</HoveredLink>
                     <HoveredLink href="/transform">{'Terminal'}</HoveredLink>
                     <HoveredLink href="/model">{'Model'}</HoveredLink>

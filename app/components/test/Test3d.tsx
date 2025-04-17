@@ -92,7 +92,7 @@ const Model3D = ({modelPath}:any) => {
     }, []);
 
     return (
-        <div style={{ height:'110vh', overflow: 'hidden' }}  className='sticky top-0' > {/* ارتفاع زیاد برای اسکرول */}
+        <div style={{ height:'400vh', overflow: 'hidden',zIndex:9999 }}  className='sticky top-[0px]' > {/* ارتفاع زیاد برای اسکرول */}
             <Canvas>
                 <Scene scrollY={scrollY} mouseY={mouseY} mouseX={mouseX} modelPath={modelPath}/>
             </Canvas>
