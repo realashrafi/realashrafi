@@ -1,5 +1,11 @@
 {
+  "app": "realashrafi",
+  "port": 3000,
   "next": {
     "modifyConfig": false
-  }
+  },
+  "build": {
+    "location": "iran"
+  },
+  "disks": []
 }
