@@ -1,43 +1,56 @@
-**README**
+![Ali Ashrafi Banner](https://wonderful-yonath-zqfmh2rkb.storage.iran.liara.space/local-share/Ali%20Ashrafi.gif)
+
+# Ali Ashrafi
+### Front-end Developer (React.js & Next.js)
+
+Shaping the web with **React.js** and **Next.js** → crafting bold, interactive solutions through 4 years of fearless experimentation and refined code.
+
+## Connect with Me
+[<img src="https://img.icons8.com/color/48/000000/linkedin.png"/>](https://www.linkedin.com/in/aliashrafi/)
+[<img src="https://img.icons8.com/color/48/000000/github.png"/>](https://github.com/realashrafi/)
+[<img src="https://img.icons8.com/color/48/000000/email.png"/>](mailto:Aliashrafi18116@gmail.com)
 
 ---
 
-### Front-end Developer (React.js & Next.js) Contact
+## Skills
+| Category         | Technologies                              |
+|------------------|-------------------------------------------|
+| Front-end       | React.js, Next.js, Tailwind CSS, Sass     |
+| 3D & AR/VR      | Three.js, Leaflet 3D Maps, AR.js          |
+| Tools           | Git, React Query, MUI                     |
+| Other           | PWA, REST API, Modular Coding             |
 
-- **Email:** Aliashrafi18116@gmail.com
-- **GitHub:** [realashrafi](https://github.com/realashrafi/)
-- **LinkedIn:** [aliashrafi](https://www.linkedin.com/in/aliashrafi/)
----
-
-### SUMMARY
-Shaping the web with React.js and
-Next.js→
-crafting bold, interactive solutions
-through 4 years of fearless
-experimentation and refined code.
-
+![Skills](https://img.shields.io/badge/-JavaScript-%23F7DF1E?style=flat&logo=javascript&logoColor=black)
+![Skills](https://img.shields.io/badge/-React-%2361DAFB?style=flat&logo=react&logoColor=black)
+![Skills](https://img.shields.io/badge/-Next.js-%23000000?style=flat&logo=next.js&logoColor=white)
 
 ---
 
+## Featured Projects
+### 3D Portfolio Website
+A fully interactive 3D portfolio built with Three.js and React.
+![3D Portfolio](https://github.com/realashrafi/realashrafi/blob/main/assets/3d-portfolio.gif)
+[Live Demo](https://your-demo-link.com) | [Repository](https://github.com/realashrafi/3d-portfolio)
 
-### SKILLS
-JavaScript (ES6)
-React.js
-Rest API
-PWA
-Tailwind CSS
-Next.js fullstack
-Js Libraries (MUI , … )
-React Hooks
-Version Control (Git)
-React Query
-Sass & Less
-Problem Solving
-Reusable Coding
-Modular Coding
-ThreeJs
-Leaflet 3D Maps
-Game Developer
-Map Developer
-AR-VR
+### AR Map Explorer
+An AR-based map application using Leaflet and AR.js.
+![AR Map](https://github.com/realashrafi/realashrafi/blob/main/assets/ar-map.gif)
+[Live Demo](https://your-ar-demo-link.com)
 
+---
+
+## Currently Working On 🚀
+- 🕶️ Developing an AR-based navigation app using AR.js
+- 🎮 Building a 3D game with Three.js and React
+- 📚 Learning WebGL for advanced 3D visualizations
+
+---
+
+## GitHub Stats
+![Ali's GitHub Stats](https://github-readme-stats.vercel.app/api?username=realashrafi&show_icons=true&theme=radical)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=realashrafi&layout=compact&theme=radical)
+
+---
+
+## My Story
+I started coding 4 years ago with a curiosity for building interactive web experiences. From my first "Hello World" to crafting 3D visualizations and AR apps, I’ve been driven by a passion for creating solutions that blend creativity and technology. Let’s build something amazing together! 🚀
