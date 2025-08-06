@@ -10,30 +10,34 @@
 ---
 
 ### SUMMARY
-Experienced frontend developer with over 3 years of hands-on
-experience in React.js and Next.js frameworks. My focus is on leveraging
-my expertise in frontend development to create unique user experiences
-and dynamic interfaces. Passionate about designing and implementing
-visually appealing and practical web applications, I am committed to
-exceeding customer expectations.
+Shaping the web with React.js and
+Next.js→
+crafting bold, interactive solutions
+through 4 years of fearless
+experimentation and refined code.
 
 
 ---
 
 
 ### SKILLS
-- JavaScript (ES6)
-- React.js
-- Next.js
-- Progressive Web Applications (PWA)
-- Tailwind CSS
-- Bootstrap
-- Material-UI (MUI)
-- Sass
-- TypeScript
-- Git
-- Redux
-- React Query
-- Context API
-- HTML/CSS
+JavaScript (ES6)
+React.js
+Rest API
+PWA
+Tailwind CSS
+Next.js fullstack
+Js Libraries (MUI , … )
+React Hooks
+Version Control (Git)
+React Query
+Sass & Less
+Problem Solving
+Reusable Coding
+Modular Coding
+ThreeJs
+Leaflet 3D Maps
+Game Developer
+Map Developer
+AR-VR
 
