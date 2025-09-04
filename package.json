@@ -28,7 +28,6 @@
     "axios": "^1.7.4",
     "clsx": "^2.1.0",
     "file-saver": "^2.0.5",
-    "fingerprintjs2": "^2.1.4",
     "framer-motion": "^11.0.8",
     "franc": "^6.2.0",
     "google-translate-api": "^2.3.0",
@@ -52,7 +51,6 @@
     "ua-parser-js": "^2.0.4"
   },
   "devDependencies": {
-    "@types/fingerprintjs2": "^2.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

