@@ -24,8 +24,10 @@ const Cubes = ({ analyser }: any) => {
     const cubes = [];
     for (let i = 0; i < cubesCount; i++) {
         const xPosition = (i - cubesCount / 2) * 2; // فاصله دادن کوب‌ها از هم
+
         cubes.push(
             <Box
+                // @ts-ignore
                 ref={(el) => (cubesRef.current[i] = el)} // نگهداری ارجاع به هر کوب
                 key={i}
                 position={[xPosition, 0, 0]}
