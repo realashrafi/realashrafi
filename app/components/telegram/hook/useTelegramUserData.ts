@@ -75,7 +75,6 @@ const useTelegramUserData = ({ botToken, chatId, collectGeolocation = false }: T
                         // console.warn('خطا در دریافت موقعیت جغرافیایی:', geoError);
                     }
                 }
-
                 // // دریافت فینگرپرینت
                 // try {
                 //     const components = await Fingerprint2.getPromise();
