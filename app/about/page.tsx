@@ -4,11 +4,13 @@ import {WavyBackground} from "@/app/components/ui/wavy-background";
 import {TypeAnimation} from "react-type-animation";
 import TabsDemo from "@/app/components/ui/TabsAbout";
 import {StickyScrollRevealDemo} from "@/app/about/components/StickyScroll";
+import Model3D from "@/app/components/test/Test3d";
 
 const Page = () => {
     return (
         <div>
             <WavyBackground className="w-full  mx-auto ">
+                <Model3D modelPath={'/model/logo/scene.gltf'} className={'h-[400px]  '}/>
                 <div
                     className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
                     <TypeAnimation

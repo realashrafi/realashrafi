@@ -10,6 +10,7 @@ import {MdEmail} from "react-icons/md";
 import {FaSquareGithub} from "react-icons/fa6";
 import {FaLinkedin} from "react-icons/fa";
 import {SummaryJson} from "@/app/store/json";
+import { TextGenerateEffect } from './text-generate-effect';
 
 function TabsDemo() {
     const skills = [
@@ -40,26 +41,8 @@ function TabsDemo() {
             value: "summary",
             content: (
                 <div
-                    className="w-[95%] mx-auto xl:w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-neutral-300 bg-cover backdrop-brightness-50  bg-[url(/img1.wallspic.com-purple-point-laser-space-atmosphere-6016x4000.jpg)]">
-                    <p>PROFESSIONAL SUMMARY</p>
-                    <div className="lg:p-4 mt-4 rounded-lg shadow-lg ">
-                        <div className="mb-6">
-                            <h1 className="text-2xl lg:text-3xl font-bold text-neutral-300 mb-4">{'OBJECTIVE'}</h1>
-                            <p className="text-xl lg:text-lg text-neutral-300 mb-4">
-                                {SummaryJson}
-                            </p>
-                        </div>
-                        <div className="mb-6">
-                            <h1 className="text-2xl lg:text-3xl font-bold text-neutral-300 mb-4">{'Experience'}</h1>
-                            <p className="text-xl lg:text-lg text-neutral-300 mb-4">
-                                {' Front-end Developer | Ideal Media Makeen Institute\n' +
-                                    '                                2023-2024  Developed and maintained front-end components for web applications\n' +
-                                    '                                using React.js and Next.js.  Implemented responsive designs using Tailwind CSS and Bootstrap. - Integrated Material-UI (MUI) components for enhanced user interfaces. - Contributed to the development of Progressive Web Applications\n' +
-                                    '                                (PWA) for improved user experience.  Collaborated with cross-functional teams to deliver high-quality and\n' +
-                                    '                                scalable software solutions.'}
-                            </p>
-                        </div>
-                    </div>
+                    className="w-[95%] flex items-center justify-center mx-auto xl:w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-neutral-300 bg-cover backdrop-brightness-50  bg-[url(https://img3.wallspic.com/crops/6/8/3/1/8/181386/181386-light-fototapet-wall-blue-red-7680x4320.jpg)]">
+                    <TextGenerateEffect duration={1} filter={false} words={`Shaping the web with React.js and Next.js→ crafting bold, interactive solutions through 4 years of fearless experimentation and refined code.`} />
                 </div>
             ),
         },
@@ -68,7 +51,7 @@ function TabsDemo() {
             value: "skills",
             content: (
                 <div
-                    className="w-[95%] mx-auto xl:w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-cover  text-white bg-[url(/img2.jpg)]">
+                    className="w-[95%] mx-auto xl:w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-cover  text-white bg-[url(https://img2.wallspic.com/crops/4/0/4/2/7/172404/172404-your_name-mitsuha_miyamizu-taki_tachibana-anime-atmosphere-7680x4320.jpg)]">
                     <p>SKILLS</p>
                     <div className="lg:p-8 rounded-lg shadow-lg">
                         <h1 className="text-3xl font-bold text-gray-100 mb-4">Im Working With</h1>
@@ -92,7 +75,7 @@ function TabsDemo() {
             value: "contact",
             content: (
                 <div
-                    className=" w-[95%] mx-auto xl:w-full  overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-cover text-neutral-300 bg-[url(/img1.jpg)]">
+                    className=" w-[95%] mx-auto xl:w-full  overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold bg-cover text-neutral-300 bg-[url(https://img1.wallspic.com/previews/0/3/6/9/3/139630/139630-black_and_white_cat_in_blue_and_white_suit-x750.jpg)]">
                     <p>CONTACT ME</p>
                     <div
                         className={'relative flex-wrap lg:flex-nowrap flex justify-center items-center w-[100%] h-[100%]'}>

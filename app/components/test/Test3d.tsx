@@ -60,7 +60,7 @@ const Scene = ({ scrollY, mouseY, mouseX ,modelPath}:any) => {
     );
 };
 
-const Model3D = ({modelPath}:any) => {
+const Model3D = ({modelPath,className}:any) => {
     const [scrollY, setScrollY] = useState(0);
     const [mouseY, setMouseY] = useState(0);
     const [mouseX, setMouseX] = useState(0);
@@ -92,7 +92,7 @@ const Model3D = ({modelPath}:any) => {
     }, []);
 
     return (
-        <div style={{ height:'400vh', overflow: 'hidden',zIndex:9999 }}  className='sticky top-[0px]' > {/* ارتفاع زیاد برای اسکرول */}
+        <div style={{ overflow: 'hidden',zIndex:9999 }}  className={className} > {/* ارتفاع زیاد برای اسکرول */}
             <Canvas>
                 <Scene scrollY={scrollY} mouseY={mouseY} mouseX={mouseX} modelPath={modelPath}/>
             </Canvas>

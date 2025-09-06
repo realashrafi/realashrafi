@@ -20,8 +20,7 @@ const Page = () => {
     return (
         <div>
             <InterView/>
-            <Model3D modelPath={'/model/space/scene.gltf'}/>
-            {/*<Model3D modelPath={'/model/logo/scene.gltf'}/>*/}
+            <Model3D modelPath={'/model/space/scene.gltf'} className={'h-[2000px] relative '}/>
             <VideoScroller videoSrc={'https://wonderful-yonath-zqfmh2rkb.storage.iran.liara.space/local-share/07.mp4'} fps={120} speed={4}/>
             <GoogleGeminiEffectDemo/>
             <TracingBeamDemo/>
