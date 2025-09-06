@@ -44,7 +44,7 @@ const Scene = ({ scrollY, mouseY, mouseX ,modelPath}:any) => {
         }
 
         if (camera) {
-            camera.position.z =15 - scrollY * 0.01; // زوم بر اساس اسکرول
+            camera.position.z =15 - scrollY * 0.02; // زوم بر اساس اسکرول
             camera.lookAt(1, -1, 0); // نگه داشتن فوکوس روی مدل
         }
     });

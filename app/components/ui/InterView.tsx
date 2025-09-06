@@ -5,7 +5,7 @@ import {TypeAnimation} from "react-type-animation";
 function InterView() {
     return (
         <div
-            className={' w-full h-[10vh] z-50 flex justify-center top-64 lg:top-64 sticky  bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl '}>
+            className={' w-full h-20 !z-10 flex justify-center top-64 lg:top-64 sticky bg-gradient-to-br from-slate-200 to-slate-400 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl '}>
             <TypeAnimation
                 sequence={[
                     'ALI ASHRAFI',
