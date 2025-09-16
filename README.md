@@ -41,7 +41,7 @@ I started coding 4 years ago with a curiosity for building interactive web exper
 ### 3D Portfolio Website
 A fully interactive 3D portfolio built with Three.js and React.
 ![3D Portfolio](https://github.com/realashrafi/realashrafi/blob/main/assets/3d-portfolio.gif)
-[Live Demo](https://your-demo-link.com) | [Repository](https://github.com/realashrafi/3d-portfolio)
+[Live Demo](https://realashrafi.ir) | [Repository](https://github.com/realashrafi/realashrafi)
 
 ### AR Map Explorer
 An AR-based map application using Leaflet and AR.js.
