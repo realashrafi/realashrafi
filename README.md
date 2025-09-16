@@ -43,13 +43,6 @@ A fully interactive 3D portfolio built with Three.js and React.
 ![3D Portfolio](https://github.com/realashrafi/realashrafi/blob/main/assets/3d-portfolio.gif)
 [Live Demo](https://realashrafi.ir) | [Repository](https://github.com/realashrafi/realashrafi)
 
-### AR Map Explorer
-An AR-based map application using Leaflet and AR.js.
-![AR Map](https://github.com/realashrafi/realashrafi/blob/main/assets/ar-map.gif)
-[Live Demo](https://your-ar-demo-link.com)
-
-
-
 ---
 
 ## Currently Working On 🚀
