@@ -258,10 +258,10 @@ const Page: React.FC = () => {
                             <h2 className="text-2xl sm:text-4xl font-bold text-center my-4 text-white drop-shadow-lg">عشقمون هیچ‌وقت نمی‌میره...</h2>
                             <ul className="list-disc text-lg sm:text-xl mb-4 space-y-2 text-white px-4">
                                 <motion.li initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0, transition: { delay: 0.5 } }}>جرقه ای که سنگ و شیشه کرد تا نورشو ببینم</motion.li>
-                                <motion.li initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0, transition: { delay: 1 } }}>همه چیزایی که درونت بود ارزوهای من بودن و تو داشتیشون</motion.li>
-                                <motion.li initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0, transition: { delay: 1.5 } }}>حتی سختی‌ها با تو قشنگ بود</motion.li>
-                                <motion.li initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0, transition: { delay: 2 } }}>باهام صحبت که میکنی اصلا مهم نیست زمان رو ثانیه چند توقف کرده</motion.li>
-                                <motion.li initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0, transition: { delay: 2.5 } }}>فقط دلم میخواد گوش کنم نگات کنم سیر نمیشم ازت</motion.li>
+                                <motion.li initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0, transition: { delay: 1.5 } }}>همه چیزایی که درونت بود ارزوهای من بودن و تو داشتیشون</motion.li>
+                                <motion.li initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0, transition: { delay: 2.5 } }}>حتی سختی‌ها با تو قشنگ بود</motion.li>
+                                <motion.li initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0, transition: { delay: 3.5 } }}>باهام صحبت که میکنی اصلا مهم نیست زمان رو ثانیه چند توقف کرده</motion.li>
+                                <motion.li initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0, transition: { delay: 4.5 } }}>فقط دلم میخواد گوش کنم نگات کنم سیر نمیشم ازت</motion.li>
                             </ul>
                             <motion.button
                                 whileHover={{ scale: 1.1 }}
