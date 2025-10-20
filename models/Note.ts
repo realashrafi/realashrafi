@@ -1,9 +1,22 @@
-import mongoose from 'mongoose'
+import mongoose, { Document, Model } from 'mongoose'
 
-const noteSchema = new mongoose.Schema({
+// Interface برای Note
+interface INote extends Document {
+    title: string
+    content: any
+    userId: mongoose.Types.ObjectId
+    createdAt: Date
+    updatedAt: Date
+}
+
+// تعریف schema
+const noteSchema = new mongoose.Schema<INote>({
     title: { type: String, required: true },
     content: { type: mongoose.Schema.Types.Mixed, required: true },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 }, { timestamps: true })
 
-export default mongoose.models.Note || mongoose.model('Note', noteSchema)
+// تعریف مدل با نوع صریح
+const Note: Model<INote> = mongoose.models.Note || mongoose.model<INote>('Note', noteSchema)
+
+export default Note
