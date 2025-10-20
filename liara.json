@@ -3,6 +3,10 @@
   "platform": "next",
   "version": "14",
   "port": 3000,
+  "env": {
+    "MONGODB_URI": "mongodb://root:ap3dGjgsSDVALbGDQ4RLBQCb@makalu.liara.cloud:30024/my-app?authSource=admin",
+    "JWT_SECRET": "my-super-secret-key-2024"
+  },
   "next": {
     "modifyConfig": false
   },
