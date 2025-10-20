@@ -1,6 +1,7 @@
 "use client";
 import React, {useState} from "react";
 import {FloatingNav} from "../ui/floating-navbar";
+//@ts-ignore
 import {IconHome, IconMessage, IconUser} from "@tabler/icons-react";
 import {cn} from "@/app/utils/cn";
 import Link from "next/link";
