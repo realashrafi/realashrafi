@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import {cn} from "../../utils/cn";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import Services from "@/app/components/ui/Services";
 
 export const FloatingNav = ({
@@ -25,7 +25,7 @@ export const FloatingNav = ({
     const {scrollYProgress} = useScroll();
 
     const [visible, setVisible] = useState(false);
-
+    const router = useRouter()
     useMotionValueEvent(scrollYProgress, "change", (current) => {
         // Check if current is not undefined and is a number
         if (typeof current === "number") {
@@ -78,6 +78,7 @@ export const FloatingNav = ({
                     </Link>
                 ))}
                 <div
+                    onClick={()=>router.push("/dashboard")}
                       className="border  font-medium absolute text-xl -left-2 lg:left-6  border-white/[0.2] text-white px-4  rounded-full">
                     <Services title={'Realashrafi'}/>
                     <span

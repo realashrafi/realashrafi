@@ -35,7 +35,11 @@ export default function Dashboard() {
             setLoading(false)
         }
     }
-
+    // Load notes
+    useEffect(() => {
+        if (!token) return router.replace('/login')
+        loadNotes()
+    }, [token])
     return (
         <div className="relative min-h-screen overflow-hidden bg-[#0a0f1a] text-white">
             {/* Background Layers */}

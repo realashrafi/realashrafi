@@ -7,7 +7,7 @@ import {cn} from "@/app/utils/cn";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import Services from "@/app/components/ui/Services";
-
+import { useRouter } from 'next/navigation'
 function FloatingNavDemo() {
     const navItems = [
         {
@@ -22,6 +22,7 @@ function FloatingNavDemo() {
         }
     ];
     const path = usePathname()
+    const router = useRouter()
     return (
         <div className="relative  w-full">
             <FloatingNav navItems={navItems}/>
@@ -44,6 +45,7 @@ function FloatingNavDemo() {
                     </Link>
                 ))}
                 <div
+                    onClick={()=>router.push("/dashboard")}
                     className="border  font-medium absolute text-xl -left-2 lg:left-6  border-white/[0.2] text-white px-4  rounded-full">
                     <Services title={'Realashrafi'}/>
                     <span
