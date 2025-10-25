@@ -1,7 +1,7 @@
 // app/roundtables/[id]/page.tsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
 
@@ -26,35 +26,71 @@ export default function RoundtablePage() {
     const [newMessage, setNewMessage] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const messageIds = useRef<Set<string>>(new Set()); // کش برای _id پیام‌ها
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
     // دریافت اطلاعات میزگرد و پیام‌ها
-    useEffect(() => {
-        if (token && id) {
-            loadRoundtable();
-        } else {
-            setError('لطفاً وارد شوید');
-            setLoading(false);
-        }
-    }, [token, id]);
-
-    const loadRoundtable = async () => {
+    const loadRoundtable = async (isInitialLoad = false) => {
         try {
-            setLoading(true);
+            if (isInitialLoad) setLoading(true);
             const res = await fetch(`/api/roundtables/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             if (!res.ok) throw new Error('Failed to load roundtable');
             const data = await res.json();
-            setRoundtable(data.roundtable);
-            setMessages(data.messages);
+            if (data.error) {
+                setError(data.error);
+            } else {
+                if (isInitialLoad) {
+                    // بارگذاری اولیه: همه پیام‌ها رو اضافه کن
+                    setRoundtable(data.roundtable);
+                    messageIds.current.clear(); // پاک کردن کش برای بارگذاری اولیه
+                    setMessages(
+                        data.messages.sort(
+                            (a: Message, b: Message) =>
+                                new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+                        )
+                    );
+                    // پر کردن messageIds با _idهای پیام‌ها
+                    data.messages.forEach((msg: Message) => messageIds.current.add(msg._id.toString()));
+                    console.log('Initial load messages:', data.messages);
+                } else {
+                    // به‌روزرسانی تفاضلی: فقط پیام‌های جدید رو اضافه کن
+                    const newMessages = data.messages.filter(
+                        (msg: Message) => !messageIds.current.has(msg._id.toString())
+                    );
+                    if (newMessages.length > 0) {
+                        newMessages.forEach((msg: Message) => messageIds.current.add(msg._id.toString()));
+                        setMessages((prev) => {
+                            const updatedMessages = [...newMessages, ...prev].sort(
+                                (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+                            );
+                            console.log('New messages added:', newMessages);
+                            return updatedMessages;
+                        });
+                    }
+                }
+                setError('');
+            }
         } catch (err) {
             setError('خطا در دریافت اطلاعات');
-            console.error(err);
+            console.error('Error in loadRoundtable:', err);
         } finally {
-            setLoading(false);
+            if (isInitialLoad) setLoading(false);
         }
     };
+
+    // رفرش خودکار و بارگذاری اولیه
+    useEffect(() => {
+        if (token && id) {
+            loadRoundtable(true); // بارگذاری اولیه
+            const interval = setInterval(() => loadRoundtable(false), 10000); // رفرش هر 10 ثانیه
+            return () => clearInterval(interval);
+        } else {
+            setError('لطفاً وارد شوید');
+            setLoading(false);
+        }
+    }, [token, id]);
 
     // ارسال پیام جدید
     const sendMessage = async () => {
@@ -75,13 +111,23 @@ export default function RoundtablePage() {
             if (data.error) {
                 setError(data.error);
             } else {
-                setMessages([data, ...messages]);
+                // اضافه کردن پیام جدید فقط اگر قبلاً اضافه نشده
+                if (!messageIds.current.has(data._id.toString())) {
+                    messageIds.current.add(data._id.toString());
+                    setMessages((prev) => {
+                        const updatedMessages = [data, ...prev].sort(
+                            (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+                        );
+                        console.log('Sent message added:', data);
+                        return updatedMessages;
+                    });
+                }
                 setNewMessage('');
                 setError('');
             }
         } catch (err) {
             setError('خطا در ارسال پیام');
-            console.error(err);
+            console.error('Error in sendMessage:', err);
         }
     };
 
@@ -144,7 +190,8 @@ export default function RoundtablePage() {
                             {messages.map((msg, i) => (
                                 <motion.div
                                     key={msg._id}
-                                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: i * 0.05 }}
                                     className="p-4 border-b border-gray-700/30 last:border-b-0"
                                 >
