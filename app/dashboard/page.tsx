@@ -92,6 +92,29 @@ export default function Dashboard() {
                             View and manage your knowledge capsules in one cognitive stream.
                         </p>
                     </motion.div>
+                    <motion.div
+                        variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }}
+                        whileHover={{ scale: 1.06, rotate: 0.5 }}
+                        whileTap={{ scale: 0.97 }}
+                        onClick={() => router.push('/dashboard/roundtables')}
+                        className="p-8 rounded-3xl cursor-pointer
+                       bg-gradient-to-br from-blue-500/10 to-fuchsia-600/5
+                       border border-blue-400/20 hover:border-fuchsia-400/30
+                       shadow-[0_0_25px_rgba(59,130,246,0.15)] hover:shadow-[0_0_45px_rgba(147,51,234,0.25)]
+                       transition-all duration-300 backdrop-blur-xl"
+                    >
+                        <div className="flex items-center space-x-3">
+                            <motion.span
+                                animate={{ rotate: [0, 360] }}
+                                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                                className="inline-block w-4 h-4 bg-gradient-to-r from-blue-400 to-fuchsia-400 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.8)]"
+                            />
+                            <h2 className="text-2xl font-semibold">🗣️ Round Tables</h2>
+                        </div>
+                        <p className="text-gray-300 text-sm mt-3 leading-relaxed">
+                            Brain Storming Like Drink glass of water
+                        </p>
+                    </motion.div>
                 </motion.section>
 
                 {/* Notes Preview */}
