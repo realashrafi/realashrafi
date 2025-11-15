@@ -16,24 +16,7 @@ import { useGesture } from '@use-gesture/react';
    1. لیست موزیک‌ها (هر عکس → یک آهنگ)
    ------------------------------------------------- */
 const MUSIC_LIST = [
-    { title: 'آواز شب', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_7a36e8e8a3.mp3?filename=forest-lullaby-110624.mp3' },
-    { title: 'رویای آبی', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2023/07/20/audio_7a36e8e8a3.mp3?filename=lofi-study-112191.mp3' },
-    { title: 'سایه‌های ماه', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2022/11/18/audio_7a36e8e8a3.mp3?filename=chill-abstract-intention-12099.mp3' },
-    { title: 'آرامش پاییز', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2023/04/06/audio_7a36e8e8a3.mp3?filename=lofi-chill-111547.mp3' },
-    { title: 'نور درون', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2023/08/11/audio_7a36e8e8a3.mp3?filename=lofi-summer-118278.mp3' },
-    { title: 'سفر بی‌پایان', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2022/05/25/audio_7a36e8e8a3.mp3?filename=lofi-chill-vibes-118277.mp3' },
-    { title: 'آسمان بنفش', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2023/03/13/audio_7a36e8e8a3.mp3?filename=lofi-beat-to-relax-study-to-105811.mp3' },
-    { title: 'آرامش دریا', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2022/07/27/audio_7a36e8e8a3.mp3?filename=lofi-chill-112190.mp3' },
-    { title: 'نغمه‌های شب', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2023/10/12/audio_7a36e8e8a3.mp3?filename=lofi-chill-143587.mp3' },
-    { title: 'رقص باد', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2023/01/10/audio_7a36e8e8a3.mp3?filename=lofi-chill-111546.mp3' },
-    { title: 'رویای ستاره', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2022/09/27/audio_7a36e8e8a3.mp3?filename=lofi-beat-118276.mp3' },
-    { title: 'آرامش جنگل', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_7a36e8e8a3.mp3?filename=forest-lullaby-110624.mp3' },
-    { title: 'نور طلایی', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2023/07/20/audio_7a36e8e8a3.mp3?filename=lofi-study-112191.mp3' },
-    { title: 'سایه‌های عشق', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2022/11/18/audio_7a36e8e8a3.mp3?filename=chill-abstract-intention-12099.mp3' },
-    { title: 'آرامش صبح', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2023/04/06/audio_7a36e8e8a3.mp3?filename=lofi-chill-111547.mp3' },
-    { title: 'نسیم بهار', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2023/08/11/audio_7a36e8e8a3.mp3?filename=lofi-summer-118278.mp3' },
-    { title: 'آسمان نقره‌ای', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2022/05/25/audio_7a36e8e8a3.mp3?filename=lofi-chill-vibes-118277.mp3' },
-    { title: 'رویای یخی', artist: 'ناشناس', src: 'https://cdn.pixabay.com/download/audio/2023/03/13/audio_7a36e8e8a3.mp3?filename=lofi-beat-to-relax-study-to-105811.mp3' },
+    { title: 'آواز شب', artist: 'realashrafi', src: 'https://wonderful-yonath-zqfmh2rkb.storage.iran.liara.space/table%201/secret/Gary%20Moore%20-%20I%20Had%20A%20Dream%20%28320%29.mp3' },
 ];
 
 /* -------------------------------------------------
@@ -677,13 +660,13 @@ export default function HybridDomeGalleryWithMusic({
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none z-20" />
 
-            {/*<MusicPlayer*/}
-            {/*    currentTrack={MUSIC_LIST[currentTrackIndex]}*/}
-            {/*    onNext={next}*/}
-            {/*    onPrev={prev}*/}
-            {/*    isPlaying={isPlaying}*/}
-            {/*    onTogglePlay={() => setIsPlaying(p => !p)}*/}
-            {/*/>*/}
+            <MusicPlayer
+                currentTrack={MUSIC_LIST[currentTrackIndex]}
+                onNext={next}
+                onPrev={prev}
+                isPlaying={isPlaying}
+                onTogglePlay={() => setIsPlaying(p => !p)}
+            />
         </div>
     );
 }
