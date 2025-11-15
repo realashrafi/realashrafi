@@ -25,6 +25,7 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.3.0",
     "@types/gsap": "^1.20.2",
+    "@use-gesture/react": "^10.3.1",
     "@vitalets/google-translate-api": "^9.2.0",
     "axios": "^1.7.4",
     "bcryptjs": "^3.0.2",
@@ -57,7 +58,9 @@
     "tailwind-merge": "^2.2.1",
     "tesseract.js": "^5.1.1",
     "three": "^0.171.0",
-    "ua-parser-js": "^2.0.4"
+    "ua-parser-js": "^2.0.4",
+    "uuid-by-string": "^4.0.0",
+    "wouter": "^3.7.1"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.10",
