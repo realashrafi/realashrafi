@@ -14,7 +14,7 @@ export function TracingBeamDemo() {
             <div className=" max-w-2xl  mx-auto antialiased pt-12 relative">
                 <div className={'w-[100%] h-[99vh] pb-12'}>
                     <iframe className={'w-[100%] h-[100%] rounded-2xl '}
-                            src="https://wonderful-yonath-zqfmh2rkb.storage.iran.liara.space/local-share/71d8c85b-e14f-4642-81c9-5618ef54744a.pdf"/>
+                            src="https://wonderful-yonath-zqfmh2rkb.storage.iran.liara.space/local-share/realashrafi-media/attach/4d8b1387-dea1-44e5-bf72-0b0607a671fb.pdf"/>
                 </div>
                 <div
                     className="w-full pb-6   flex items-center justify-center bg-red-transparent ">
