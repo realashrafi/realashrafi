@@ -1,4 +1,4 @@
-![Ali Ashrafi Banner]([https://wonderful-yonath-zqfmh2rkb.storage.iran.liara.space/local-share/Ali%20Ashrafi.gif](https://cdn.dribbble.com/userupload/47885502/file/d4cac2cca56e6f615704d2e0215be2b0.mp4))
+<img src="https://c.tenor.com/BdDV7Oz1zTQAAAAC/tenor.gif"/>
 
 # Ali Ashrafi
 ### Front-end Developer (React.js & Next.js)
