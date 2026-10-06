@@ -5,7 +5,7 @@
 
 ![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&color=%233DBFDB&size=24&lines=Front-end+Developer;React.js+%26+Next.js+Enthusiast;3D+%26+AR/VR+Innovator)
 
-Shaping the web with **React.js** and **Next.js** → crafting bold, interactive solutions through 5 years of fearless experimentation and refined code.
+Shaping the web with **React.js** and **Next.js** → crafting bold, interactive solutions through 6 years of fearless experimentation and refined code.
 
 ## Connect with Me
 [<img src="https://img.icons8.com/color/48/000000/linkedin.png"/>](https://www.linkedin.com/in/aliashrafi/)
@@ -15,7 +15,7 @@ Shaping the web with **React.js** and **Next.js** → crafting bold, interactive
 ---
 
 ## My Story
-I started coding 4 years ago with a curiosity for building interactive web experiences. From my first "Hello World" to crafting 3D visualizations and AR apps, I’ve been driven by a passion for creating solutions that blend creativity and technology. Let’s build something amazing together! 🚀
+I started coding 8 years ago with a curiosity for building interactive web experiences. From my first "Hello World" to crafting 3D visualizations and AR apps, I’ve been driven by a passion for creating solutions that blend creativity and technology. Let’s build something amazing together! 🚀
 
 ---
 
